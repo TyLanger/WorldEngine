@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c26ohnqreg8gv"]
+
+[ext_resource type="PackedScene" uid="uid://bd3t17ocbs6td" path="res://grid.tscn" id="1_y4y31"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Castle Grid" parent="." instance=ExtResource("1_y4y31")]
+position = Vector2(575, 314)
+
+[node name="North Grid" parent="." instance=ExtResource("1_y4y31")]
+position = Vector2(575, 186)
+width = 5
+height = 5
