@@ -4,19 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://bboqry6xl3d2f" path="res://icon.svg" id="2_n1fni"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(575, 322)
 
 [node name="Castle Grid" parent="." instance=ExtResource("1_y4y31")]
+grid_width = 7
+grid_height = 7
 
 [node name="North Grid" parent="." instance=ExtResource("1_y4y31")]
 position = Vector2(0, -152)
-width = 5
-height = 5
+grid_width = 5
+grid_height = 5
 
 [node name="East Grid" parent="." instance=ExtResource("1_y4y31")]
 position = Vector2(152, 0)
-width = 5
-height = 5
+grid_width = 5
+grid_height = 5
 
 [node name="Top Right" type="Sprite2D" parent="."]
 position = Vector2(510, -254)
