@@ -1,20 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqll0t8ilqxxm"]
 
-[ext_resource type="Texture2D" uid="uid://bboqry6xl3d2f" path="res://icon.svg" id="1_0kmfx"]
 [ext_resource type="Script" path="res://tile.gd" id="1_wneqk"]
+[ext_resource type="Texture2D" uid="uid://dpsedmq7towql" path="res://sprites/forest.png" id="2_sfh4i"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hxp4"]
-size = Vector2(125, 125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojr4x"]
 
 [node name="Tile" type="Node2D"]
 script = ExtResource("1_wneqk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0kmfx")
+texture = ExtResource("2_sfh4i")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-shape = SubResource("RectangleShape2D_6hxp4")
-
-[connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]
+scale = Vector2(2.4, 2.4)
+shape = SubResource("RectangleShape2D_ojr4x")

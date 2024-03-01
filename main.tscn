@@ -1,13 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://c26ohnqreg8gv"]
+[gd_scene load_steps=3 format=3 uid="uid://c26ohnqreg8gv"]
 
 [ext_resource type="PackedScene" uid="uid://bd3t17ocbs6td" path="res://grid.tscn" id="1_y4y31"]
+[ext_resource type="Texture2D" uid="uid://bboqry6xl3d2f" path="res://icon.svg" id="2_n1fni"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(575, 322)
 
 [node name="Castle Grid" parent="." instance=ExtResource("1_y4y31")]
-position = Vector2(575, 314)
 
 [node name="North Grid" parent="." instance=ExtResource("1_y4y31")]
-position = Vector2(575, 186)
+position = Vector2(0, -152)
 width = 5
 height = 5
+
+[node name="East Grid" parent="." instance=ExtResource("1_y4y31")]
+position = Vector2(152, 0)
+width = 5
+height = 5
+
+[node name="Top Right" type="Sprite2D" parent="."]
+position = Vector2(510, -254)
+texture = ExtResource("2_n1fni")
+
+[node name="Top Left" type="Sprite2D" parent="."]
+position = Vector2(-507, -259)
+texture = ExtResource("2_n1fni")
+
+[node name="Bot Right" type="Sprite2D" parent="."]
+position = Vector2(510, 256)
+texture = ExtResource("2_n1fni")
+
+[node name="Bot Left" type="Sprite2D" parent="."]
+position = Vector2(-507, 259)
+texture = ExtResource("2_n1fni")
+
+[node name="Camera2D" type="Camera2D" parent="."]
