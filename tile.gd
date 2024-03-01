@@ -9,6 +9,8 @@ var moving = false
 
 var swappable = true
 
+var has_tower = false
+
 var move_speed: float = 3.0
 var max_speed: float = 20.0
 var min_speed: float = 4.0

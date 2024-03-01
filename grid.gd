@@ -44,6 +44,16 @@ func _process(_delta):
 	if Input.is_action_just_released("mouse_left") && carrying_tile:
 		tile_dropped()
 
+func get_selection_position():
+	if is_tile_selected:
+		return tile_selected.position
+	return Vector2.ZERO
+	
+func spawn_tower(tower_scn: PackedScene):
+	var tower = tower_scn.instantiate()
+	tile_selected.add_child(tower)
+	tile_selected.has_tower = true
+
 func process_swapping():
 	if carrying_tile:
 		# when you pass another tile, swap it to where I used to be
@@ -88,7 +98,7 @@ func swap_grid(a: TilePoint, b: TilePoint):
 
 func _on_tile_clicked(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
-		if event.pressed:
+		if event.pressed && event.button_index == 1:
 			tile_clicked()
 
 func tile_clicked():
