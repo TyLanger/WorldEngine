@@ -16,7 +16,7 @@ var carry_point
 var is_tile_selected = false
 var tile_selected
 
-var gravity_diretion = Direction.Down
+@export var gravity_diretion = Direction.Down
 
 enum Direction {
 	Up, Right, Down, Left
@@ -102,6 +102,8 @@ func drill_here(x: int, y: int):
 	#swap this tile along the column to the top of the grid
 	if gravity_diretion == Direction.Down:
 		swap_col_down(x)
+	elif gravity_diretion == Direction.Left:
+		swap_row_left(y)
 
 func swap_col_down(x: int):
 	# drill broke the bottom
@@ -124,6 +126,19 @@ func swap_col_down(x: int):
 	for i in grid_height:
 		tile_p.y = i
 		grid[x][i].swap(anchor_from_point(tile_p))
+
+func swap_row_left(y: int):
+	# left edge is 0
+	var temp = grid[0][y]
+	for i in (grid_width-1):
+		grid[i][y] = grid[i+1][y]
+	grid[grid_width-1][y] = temp
+	
+	var tile_p = TilePoint.new()
+	tile_p.y = y
+	for i in grid_width:
+		tile_p.x = i
+		grid[i][y].swap(anchor_from_point(tile_p))
 
 func swap_grid(a: TilePoint, b: TilePoint):
 	var temp = grid[a.x][a.y]

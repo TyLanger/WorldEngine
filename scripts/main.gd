@@ -29,6 +29,11 @@ func operate_drills():
 	for i in range(1, 6):
 		if get_node("Castle Grid").grid[i][0].has_tower:
 			get_node("North Grid").drill_here(i-1, 4)
+			
+	# mine east
+	for i in range(1, 6):
+		if get_node("Castle Grid").grid[6][i].has_tower:
+			get_node("East Grid").drill_here(0, i-1)
 
 
 func _on_drill_timer_timeout():
