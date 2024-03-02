@@ -40,3 +40,9 @@ position = Vector2(-507, 259)
 texture = ExtResource("2_n1fni")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Drill Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Drill Timer" to="." method="_on_drill_timer_timeout"]

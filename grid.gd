@@ -16,6 +16,12 @@ var carry_point
 var is_tile_selected = false
 var tile_selected
 
+var gravity_diretion = Direction.Down
+
+enum Direction {
+	Up, Right, Down, Left
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	grid = []
@@ -91,6 +97,34 @@ func try_swap(other_point: TilePoint):
 	swap_grid(carry_point, other_point)
 	carry_point = other_point
 
+func drill_here(x: int, y: int):
+	grid[x][y].get_drilled()
+	#swap this tile along the column to the top of the grid
+	if gravity_diretion == Direction.Down:
+		swap_col_down(x)
+
+func swap_col_down(x: int):
+	# drill broke the bottom
+	# it needs to move to the top
+	# every other tile moves down 1
+	# y = 4 is the bottom
+	# y = 0 is the top
+	var temp = grid[x][grid_height-1]
+	for i in (grid_height-1):
+		# height = 5
+		# 0, 1, 2, 3,
+		var offset = grid_height - 1 - i
+		# 5 - 2 - (0,1,2,3)
+		# 4, 3, 2, 1
+		grid[x][offset] = grid[x][offset - 1]
+	grid[x][0] = temp
+	
+	var tile_p = TilePoint.new()
+	tile_p.x = x
+	for i in grid_height:
+		tile_p.y = i
+		grid[x][i].swap(anchor_from_point(tile_p))
+
 func swap_grid(a: TilePoint, b: TilePoint):
 	var temp = grid[a.x][a.y]
 	grid[a.x][a.y] = grid[b.x][b.y]
@@ -113,6 +147,8 @@ func tile_clicked():
 func tile_dropped():
 	carrying_tile = false
 	grid[carry_point.x][carry_point.y].drop(anchor_from_point(carry_point))
+
+
 
 func is_over_tile(click_pos: Vector2):
 	# forward

@@ -12,8 +12,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("space"):
 		print("drill here: ", get_node("Castle Grid").get_selection_position())
 		get_node("Castle Grid").spawn_tower(drill_scn)
-	operate_drills()
-		
+
 func operate_drills():
 	# check in castle grid
 	# at the specific tiles
@@ -29,4 +28,8 @@ func operate_drills():
 	# mine north
 	for i in range(1, 6):
 		if get_node("Castle Grid").grid[i][0].has_tower:
-			get_node("North Grid").grid[i-1][4].get_node("Sprite2D").visible = false
+			get_node("North Grid").drill_here(i-1, 4)
+
+
+func _on_drill_timer_timeout():
+	operate_drills()

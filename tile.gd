@@ -16,11 +16,16 @@ var max_speed: float = 20.0
 var min_speed: float = 4.0
 var accel: float = 1.7
 
+@export var forest_tex: Texture
+@export var mountain_tex: Texture
+
+var sprite_node
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position
 	anchor_pos = start_pos
-
+	sprite_node = get_node("Sprite2D")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -40,6 +45,8 @@ func _process(_delta):
 		if position.distance_squared_to(anchor_pos) < 0.1:
 			position = anchor_pos
 			moving = false
+			if !sprite_node.visible:
+				sprite_node.visible = true
 
 func can_swap():
 	return swappable
@@ -56,6 +63,10 @@ func drop(new_pos):
 	
 	move_speed = min_speed
 	moving = true
+
+func get_drilled():
+	sprite_node.visible = false
+	sprite_node.texture = mountain_tex
 
 func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	pass
