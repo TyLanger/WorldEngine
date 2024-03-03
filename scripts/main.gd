@@ -10,7 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("space"):
-		print("drill here: ", get_node("Castle Grid").get_selection_position())
+		print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
 		get_node("Castle Grid").spawn_tower(drill_scn)
 
 func operate_drills():
