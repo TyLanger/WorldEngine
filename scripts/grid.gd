@@ -155,7 +155,7 @@ func tile_clicked():
 	var tile_selected_point = nearest_tile(get_global_mouse_position())
 	tile_selected = grid[tile_selected_point.x][tile_selected_point.y]
 	if tile_selected.can_swap():
-		tile_selected.follow_mouse = true
+		tile_selected.pickup()
 		carrying_tile = true
 		carry_point = nearest_tile(get_global_mouse_position())
 	

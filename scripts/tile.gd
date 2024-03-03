@@ -55,7 +55,6 @@ func _process(_delta):
 		move_speed = clamp(move_speed + accel, min_speed, max_speed)
 		if position.distance_squared_to(anchor_pos) < 0.1:
 			reached_desitation()
-			
 
 func can_swap():
 	return swappable
@@ -66,8 +65,13 @@ func swap(new_pos):
 	move_speed = min_speed
 	moving = true
 
+func pickup():
+	follow_mouse = true
+	z_index += 1 #should I just set it to 1?
+
 func drop(new_pos):
 	follow_mouse = false
+	z_index -= 1 # should I just set it to 0?
 	anchor_pos = new_pos
 	
 	move_speed = min_speed
