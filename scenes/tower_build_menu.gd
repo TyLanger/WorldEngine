@@ -1,6 +1,6 @@
 extends Control
 
-signal on_drill_button_pressed
+signal on_tower_build_button_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,5 +13,5 @@ func _process(delta):
 
 
 func _on_drill_button_pressed():
-	print("drill button pressed")
-	on_drill_button_pressed.emit()
+	on_tower_build_button_pressed.emit(TowerType.Drill)
+
