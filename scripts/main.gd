@@ -1,17 +1,22 @@
 extends Node2D
 
 @export var drill_scn: PackedScene
+var tower_build_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	tower_build_menu = get_node("Tower Build Menu")
+	tower_build_menu.on_drill_button_pressed.connect(build_drill)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("space"):
-		print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
-		get_node("Castle Grid").spawn_tower(drill_scn)
+		build_drill()
+
+func build_drill():
+	print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
+	get_node("Castle Grid").spawn_tower(drill_scn)
 
 func operate_drills():
 	# check in castle grid

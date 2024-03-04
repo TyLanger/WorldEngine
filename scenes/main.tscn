@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c26ohnqreg8gv"]
+[gd_scene load_steps=6 format=3 uid="uid://c26ohnqreg8gv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ddm3x"]
 [ext_resource type="PackedScene" uid="uid://bd3t17ocbs6td" path="res://scenes/grid.tscn" id="1_y4y31"]
 [ext_resource type="PackedScene" uid="uid://dgmgnyybg7w3m" path="res://scenes/drill_tower.tscn" id="2_cpkls"]
 [ext_resource type="Texture2D" uid="uid://bboqry6xl3d2f" path="res://icon.svg" id="2_n1fni"]
+[ext_resource type="PackedScene" uid="uid://cb80i026tnqb4" path="res://scenes/tower_build_menu.tscn" id="5_s51tr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ddm3x")
@@ -45,5 +46,7 @@ texture = ExtResource("2_n1fni")
 [node name="Drill Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Tower Build Menu" parent="." instance=ExtResource("5_s51tr")]
 
 [connection signal="timeout" from="Drill Timer" to="." method="_on_drill_timer_timeout"]

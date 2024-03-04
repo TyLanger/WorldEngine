@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb80i026tnqb4"]
+
+[ext_resource type="Script" path="res://scenes/tower_build_menu.gd" id="1_xrckx"]
+
+[node name="Tower Build Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xrckx")
+
+[node name="Drill Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = -174.0
+offset_right = 553.0
+offset_bottom = -143.0
+text = "Drill Tower"
+
+[connection signal="pressed" from="Drill Button" to="." method="_on_drill_button_pressed"]
