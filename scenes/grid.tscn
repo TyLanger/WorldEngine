@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd3t17ocbs6td"]
+[gd_scene load_steps=4 format=3 uid="uid://bd3t17ocbs6td"]
 
 [ext_resource type="Script" path="res://scripts/grid.gd" id="1_10yi6"]
 [ext_resource type="PackedScene" uid="uid://dqll0t8ilqxxm" path="res://scenes/tile.tscn" id="2_xcpx5"]
+[ext_resource type="Texture2D" uid="uid://pwecee5fmsqg" path="res://sprites/selection.png" id="3_24oty"]
 
 [node name="Grid" type="Node2D"]
 script = ExtResource("1_10yi6")
 tile_scene = ExtResource("2_xcpx5")
+
+[node name="Selection" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+texture = ExtResource("3_24oty")

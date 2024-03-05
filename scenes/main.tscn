@@ -13,6 +13,7 @@ drill_scn = ExtResource("2_cpkls")
 [node name="Castle Grid" parent="." instance=ExtResource("1_y4y31")]
 grid_width = 7
 grid_height = 7
+player_controlled = true
 
 [node name="North Grid" parent="." instance=ExtResource("1_y4y31")]
 position = Vector2(0, -152)

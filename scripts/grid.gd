@@ -15,6 +15,12 @@ var carry_point
 
 var is_tile_selected = false
 var tile_selected
+# what can the player do to other grids?
+# probably not swap them (but maybe as a treat once in a while?)
+# maybe can still select to get more info
+@export var player_controlled = false
+var selection
+var frame_last_clicked
 
 @export var gravity_diretion = Direction.Down
 
@@ -24,6 +30,7 @@ enum Direction {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	selection = get_node("Selection")
 	grid = []
 	for i in grid_width:
 		var row = []
@@ -46,9 +53,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	# the click signal happens first
+	# so just check that it's not the same frame
+	if Input.is_action_just_pressed("mouse_left") && frame_last_clicked != Time.get_ticks_msec():
+		unselect()
 	process_swapping()
 	if Input.is_action_just_released("mouse_left") && carrying_tile:
 		tile_dropped()
+
+func unselect():
+	selection.visible = false
+	# other deselect stuff maybe
+	# tile_selected = false
+	# is there other stuff I need to do?
 
 func get_selection_position():
 	if is_tile_selected:
@@ -64,7 +81,7 @@ func spawn_tower(tower_scn: PackedScene):
 		print("Tile already has a tower")
 
 func process_swapping():
-	if carrying_tile:
+	if carrying_tile && player_controlled:
 		# when you pass another tile, swap it to where I used to be
 		var other_point = nearest_tile(get_global_mouse_position())
 		#var other_point = nearest_neighbour(get_global_mouse_position())
@@ -72,6 +89,7 @@ func process_swapping():
 		# I think I'm hovering over what I picked and nearest neighbour is forcing
 		# it to a neighbour when I'm hovering over myself
 		try_swap(other_point)
+		selection.position = tile_selected.position
 
 func try_swap(other_point: TilePoint):
 	# can the tile be swapped?
@@ -157,14 +175,21 @@ func tile_clicked():
 	is_tile_selected = true
 	var tile_selected_point = nearest_tile(get_global_mouse_position())
 	tile_selected = grid[tile_selected_point.x][tile_selected_point.y]
-	if tile_selected.can_swap():
+	#update selection
+	selection.position = tile_selected.position
+	selection.visible = true
+	frame_last_clicked = Time.get_ticks_msec()
+	
+	if tile_selected.can_swap() && player_controlled:
 		tile_selected.pickup()
 		carrying_tile = true
 		carry_point = nearest_tile(get_global_mouse_position())
 	
 func tile_dropped():
 	carrying_tile = false
-	grid[carry_point.x][carry_point.y].drop(anchor_from_point(carry_point))
+	var anchor = anchor_from_point(carry_point)
+	grid[carry_point.x][carry_point.y].drop(anchor)
+	selection.position = anchor
 
 
 
