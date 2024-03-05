@@ -20,7 +20,7 @@ var tile_selected
 # maybe can still select to get more info
 @export var player_controlled = false
 var selection
-var frame_last_clicked
+var frame_last_clicked = 0
 
 @export var gravity_diretion = Direction.Down
 
@@ -55,8 +55,15 @@ func _ready():
 func _process(_delta):
 	# the click signal happens first
 	# so just check that it's not the same frame
-	if Input.is_action_just_pressed("mouse_left") && frame_last_clicked != Time.get_ticks_msec():
-		unselect()
+	# not so..
+	# tile clicked 8525
+	# process 8525
+	# process 8526
+	# process 8526
+	
+	if Input.is_action_just_pressed("mouse_left"):
+		if Time.get_ticks_msec() - frame_last_clicked > 5:
+			unselect()
 	process_swapping()
 	if Input.is_action_just_released("mouse_left") && carrying_tile:
 		tile_dropped()
@@ -172,6 +179,7 @@ func _on_tile_clicked(_viewport, event, _shape_idx):
 			tile_clicked()
 
 func tile_clicked():
+	
 	is_tile_selected = true
 	var tile_selected_point = nearest_tile(get_global_mouse_position())
 	tile_selected = grid[tile_selected_point.x][tile_selected_point.y]
