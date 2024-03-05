@@ -56,9 +56,12 @@ func get_selection_position():
 	return Vector2.ZERO
 	
 func spawn_tower(tower_scn: PackedScene):
-	var tower = tower_scn.instantiate()
-	tile_selected.add_child(tower)
-	tile_selected.has_tower = true
+	if !tile_selected.has_tower:
+		var tower = tower_scn.instantiate()
+		tile_selected.add_child(tower)
+		tile_selected.has_tower = true
+	else:
+		print("Tile already has a tower")
 
 func process_swapping():
 	if carrying_tile:

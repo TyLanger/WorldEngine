@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cb80i026tnqb4"]
 
-[ext_resource type="Script" path="res://scenes/tower_build_menu.gd" id="1_xrckx"]
+[ext_resource type="Script" path="res://scripts/tower_build_menu.gd" id="1_xrckx"]
 
 [node name="Tower Build Menu" type="Control"]
 layout_mode = 3
