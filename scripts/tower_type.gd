@@ -1,4 +1,5 @@
 class_name TowerType
 enum {
-	Drill
+	Drill,
+	Cannon
 }

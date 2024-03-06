@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4ceqhuar1u8r"]
+[gd_scene load_steps=4 format=3 uid="uid://b4ceqhuar1u8r"]
 
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_0ftfs"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_xokg1"]
 [ext_resource type="Texture2D" uid="uid://df55jjtyb6oc2" path="res://sprites/enemy.png" id="2_4l0io"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50432"]
+
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_0ftfs")
+script = ExtResource("1_xokg1")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 z_index = 2
 texture = ExtResource("2_4l0io")
+
+[node name="EnemyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
+shape = SubResource("RectangleShape2D_50432")

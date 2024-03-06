@@ -19,4 +19,13 @@ offset_right = 553.0
 offset_bottom = -143.0
 text = "Drill Tower"
 
+[node name="Cannon Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = -134.0
+offset_right = 553.0
+offset_bottom = -103.0
+text = "Cannon Tower"
+
 [connection signal="pressed" from="Drill Button" to="." method="_on_drill_button_pressed"]
+[connection signal="pressed" from="Cannon Button" to="." method="_on_cannon_button_pressed"]

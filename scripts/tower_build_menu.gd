@@ -15,3 +15,5 @@ func _process(delta):
 func _on_drill_button_pressed():
 	on_tower_build_button_pressed.emit(TowerType.Drill)
 
+func _on_cannon_button_pressed():
+	on_tower_build_button_pressed.emit(TowerType.Cannon)

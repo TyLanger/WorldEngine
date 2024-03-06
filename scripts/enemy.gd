@@ -33,3 +33,6 @@ func _process(delta):
 		print("Enemy reached castle")
 		queue_free()
 	
+func kill():
+	print("Enemy killed")
+	queue_free()

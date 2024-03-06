@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var drill_scn: PackedScene
+@export var cannon_scn: PackedScene
 var tower_build_menu
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,12 @@ func try_build_tower(tower):
 	match tower:
 		TowerType.Drill:
 			build_drill()
+		TowerType.Cannon:
+			build_cannon()
+
+func build_cannon():
+	print("spawn cannon here: ", get_node("Castle Grid").get_selection_position())
+	get_node("Castle Grid").spawn_tower(cannon_scn)
 
 func build_drill():
 	print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
