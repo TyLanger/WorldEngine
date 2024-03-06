@@ -18,25 +18,31 @@ var max_speed: float = 20.0
 var min_speed: float = 4.0
 var accel: float = 1.7
 
-var sprite_node
+@onready var sprite_node = get_node("Sprite2D")
 
 @export var forest_tex: Texture
 @export var mountain_tex: Texture
+@export var field_tex: Texture
 
-var tile_type: TileType
+var tile_type = TileType.Field
+
+var random_type = true
 
 @export var camp_scene: PackedScene
 
 enum TileType {
-	Forest, Mountain
+	Forest, Mountain, Field
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position
 	anchor_pos = start_pos
-	sprite_node = get_node("Sprite2D")
-	choose_random_type()
+	#sprite_node = get_node("Sprite2D")
+	sprite_node.texture = field_tex
+
+	if random_type:
+		choose_random_type()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -83,8 +89,8 @@ func reached_desitation():
 	moving = false
 	if !sprite_node.visible:
 		sprite_node.visible = true
-	if has_camp:
-		camp_node.show_sprite()
+		if has_camp:
+			camp_node.show_sprite()
 
 func get_drilled():
 	give_loot()
@@ -103,6 +109,8 @@ func give_loot():
 			print("give forest loot")
 		TileType.Mountain:
 			print("give mountain loot")
+		TileType.Field:
+			print("give field loot")
 
 func choose_random_type():
 	var r = randi_range(0, 2)
@@ -113,6 +121,9 @@ func choose_random_type():
 		1:
 			sprite_node.texture = mountain_tex
 			tile_type = TileType.Mountain
+		2:
+			sprite_node.texture = field_tex
+			tile_type = TileType.Field
 
 func create_camp():
 	var r = randi_range(0, 10)

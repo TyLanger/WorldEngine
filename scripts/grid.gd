@@ -46,6 +46,8 @@ func _ready():
 			var centered_x = i - grid_width/2
 			var centered_y = j - grid_height/2
 			tile.position = position + Vector2(tile_width * centered_x, tile_width * centered_y)
+			if player_controlled:
+				tile.random_type = false
 			add_child(tile)
 			row.append(tile)
 		grid.append(row)
