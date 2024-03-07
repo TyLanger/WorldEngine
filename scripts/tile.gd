@@ -10,6 +10,8 @@ var moving = false
 var swappable = true
 
 var has_tower = false
+var tower_type
+var my_tower
 var has_camp = false
 var camp_node
 
@@ -70,6 +72,36 @@ func swap(new_pos):
 	
 	move_speed = min_speed
 	moving = true
+
+func dragged_dir(dir):
+	# you were dragged by the mouse this direction
+	match dir:
+		Direction.Up:
+			print("I was dragged up")
+		Direction.Right:
+			print("I was dragged right")
+		Direction.Down:
+			print("I was dragged down")
+		Direction.Left:
+			print("I was dragged left")
+	
+	if has_tower:
+		my_tower.face_dir(dir)
+
+func forced_dir(dir):
+	# you were forced this direction by another tile pushing you
+	match dir:
+		Direction.Up:
+			print("I was forced up")
+		Direction.Right:
+			print("I was forced right")
+		Direction.Down:
+			print("I was forced down")
+		Direction.Left:
+			print("I was forced left")
+	
+	#if has_tower:
+		#my_tower.face_dir(dir)
 
 func pickup():
 	follow_mouse = true
@@ -134,6 +166,13 @@ func create_camp():
 		add_child(camp)
 		camp_node = camp
 		has_camp = true
+
+func spawn_tower(tower_scn: PackedScene, t_type):
+	var tower = tower_scn.instantiate()
+	add_child(tower)
+	has_tower = true
+	tower_type = t_type
+	my_tower = tower
 
 func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	pass

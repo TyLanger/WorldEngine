@@ -23,11 +23,11 @@ func try_build_tower(tower):
 
 func build_cannon():
 	print("spawn cannon here: ", get_node("Castle Grid").get_selection_position())
-	get_node("Castle Grid").spawn_tower(cannon_scn)
+	get_node("Castle Grid").spawn_tower(cannon_scn, TowerType.Cannon)
 
 func build_drill():
 	print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
-	get_node("Castle Grid").spawn_tower(drill_scn)
+	get_node("Castle Grid").spawn_tower(drill_scn, TowerType.Drill)
 
 func operate_drills():
 	# check in castle grid

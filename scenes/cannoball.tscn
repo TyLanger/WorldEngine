@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bblpvr68tu1xx"]
 
-[ext_resource type="Script" path="res://scenes/cannoball.gd" id="1_4fgpv"]
+[ext_resource type="Script" path="res://scripts/cannoball.gd" id="1_4fgpv"]
 [ext_resource type="Texture2D" uid="uid://ckswfy57sn181" path="res://sprites/cannonball.png" id="2_eio0g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfawd"]
@@ -18,7 +18,7 @@ texture = ExtResource("2_eio0g")
 shape = SubResource("RectangleShape2D_wfawd")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.3
 one_shot = true
 autostart = true
 

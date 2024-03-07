@@ -81,11 +81,12 @@ func get_selection_position():
 		return tile_selected.position
 	return Vector2.ZERO
 	
-func spawn_tower(tower_scn: PackedScene):
+func spawn_tower(tower_scn: PackedScene, tower_type):
 	if !tile_selected.has_tower:
-		var tower = tower_scn.instantiate()
-		tile_selected.add_child(tower)
-		tile_selected.has_tower = true
+		#var tower = tower_scn.instantiate()
+		#tile_selected.add_child(tower)
+		#tile_selected.has_tower = true
+		tile_selected.spawn_tower(tower_scn, tower_type)
 	else:
 		print("Tile already has a tower")
 
@@ -124,6 +125,7 @@ func try_swap(other_point: TilePoint):
 	# as it swaps other tiles out of the way
 	grid[carry_point.x][carry_point.y].anchor_pos = anchor_from_point(other_point)
 	
+	process_swap_directions(carry_point, other_point)
 	swap_grid(carry_point, other_point)
 	carry_point = other_point
 
@@ -174,6 +176,25 @@ func swap_grid(a: TilePoint, b: TilePoint):
 	var temp = grid[a.x][a.y]
 	grid[a.x][a.y] = grid[b.x][b.y]
 	grid[b.x][b.y] = temp
+
+func process_swap_directions(a: TilePoint, b: TilePoint):
+	if a.x < b.x:
+		print("1. a was moved right, b was moved left")
+		grid[a.x][a.y].dragged_dir(Direction.Right)
+		grid[b.x][b.y].forced_dir(Direction.Left)
+	elif a.x > b.x:
+		print("2. a was moved left, b was moved right")
+		grid[a.x][a.y].dragged_dir(Direction.Left)
+		grid[b.x][b.y].forced_dir(Direction.Right)
+	elif a.y > b.y:
+		print("3. a was moved up, b was moved down")
+		grid[a.x][a.y].dragged_dir(Direction.Up)
+		grid[b.x][b.y].forced_dir(Direction.Down)
+	elif a.y < b.y:
+		print("4. a was moved down, b was moved up")
+		grid[a.x][a.y].dragged_dir(Direction.Down)
+		grid[b.x][b.y].forced_dir(Direction.Up)
+		
 
 func _on_tile_clicked(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:

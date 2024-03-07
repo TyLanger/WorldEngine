@@ -1,6 +1,6 @@
 extends Node2D
 
-var move_speed = 200.0
+var move_speed = 400.0
 var direction = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
