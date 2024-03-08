@@ -80,7 +80,11 @@ func get_selection_position():
 	if is_tile_selected:
 		return tile_selected.position
 	return Vector2.ZERO
-	
+
+func update_selection_position():
+	if is_tile_selected:
+		selection.position = tile_selected.position
+
 func spawn_tower(tower_scn: PackedScene, tower_type):
 	if !tile_selected.has_tower:
 		#var tower = tower_scn.instantiate()
@@ -99,7 +103,7 @@ func process_swapping():
 		# I think I'm hovering over what I picked and nearest neighbour is forcing
 		# it to a neighbour when I'm hovering over myself
 		try_swap(other_point)
-		selection.position = tile_selected.position
+		update_selection_position()
 
 func try_swap(other_point: TilePoint):
 	# can the tile be swapped?
@@ -128,6 +132,53 @@ func try_swap(other_point: TilePoint):
 	process_swap_directions(carry_point, other_point)
 	swap_grid(carry_point, other_point)
 	carry_point = other_point
+
+func random_swap_nearby(x: int, y: int):
+	#if you hit a tower, swap it with one of its neighbours
+	if grid[x][y].has_tower:
+		var r = randi_range(0, 3)
+		match r:
+			0:
+				# above
+				if y > 0:
+					if is_either_being_carried(x, y, x, y-1):
+						tile_dropped()
+					swap_helper(x, y, x, y-1)
+			1:
+				# right
+				if x < (grid_width-1):
+					if is_either_being_carried(x, y, x+1, y):
+						tile_dropped()
+					swap_helper(x, y, x+1, y)
+			2:
+				# down
+				if y < (grid_height-1):
+					if is_either_being_carried(x, y, x, y+1):
+						tile_dropped()
+					swap_helper(x, y, x, y+1)
+			3:
+				#left
+				if x > 0:
+					if is_either_being_carried(x, y, x-1, y):
+						tile_dropped()
+					swap_helper(x, y, x-1, y)
+		# update in case you were selecting one of the tiles
+		# use the anchor pos bc the tile hasn't moved to its real position yet
+		# if you're holding a tile somewhere nowhere near this, 
+		# it flickers, but goes right back to where you're holding the tile
+		# so it's minimal
+		selection.position = tile_selected.anchor_pos
+
+func swap_helper(ax: int, ay: int, bx: int, by: int):
+	var temp = grid[ax][ay]
+	grid[ax][ay] = grid[bx][by]
+	grid[bx][by] = temp
+	
+	grid[ax][ay].swap(anchor_from_xy(ax, ay))
+	grid[bx][by].swap(anchor_from_xy(bx, by))
+
+func is_either_being_carried(ax: int, ay: int, bx: int, by: int):
+	return grid[ax][ay].follow_mouse || grid[bx][by].follow_mouse
 
 func drill_here(x: int, y: int):
 	grid[x][y].get_drilled()
@@ -295,6 +346,11 @@ func anchor_from_point(point):
 	# v2.x = width * x
 	var x = point.x - grid_width/2
 	var y = point.y - grid_height/2
+	return position + Vector2(tile_width * x, tile_width * y)
+
+func anchor_from_xy(x: int, y: int):
+	x = x - grid_width/2
+	y = y - grid_height/2
 	return position + Vector2(tile_width * x, tile_width * y)
 
 func are_neighbours(a: TilePoint, b: TilePoint):

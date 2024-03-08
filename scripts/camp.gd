@@ -2,6 +2,9 @@ extends Node2D
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
 
+# will be 1 when it appears
+var times_moved = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -18,7 +21,17 @@ func hide_sprite():
 func show_sprite():
 	get_node("CampSprite").visible = true
 	get_node("Timer").start()
-	
+
+func camp_moved():
+	times_moved += 1
+	print("camp moved ", times_moved)
+	if times_moved == 3:
+		print("spawn push bomb")
+		# where?
+		# parent.parent.parent.parent?
+		# tile.grid.main
+		get_parent().get_parent().get_parent().camp_reached_3(global_position)
+
 func spawn_enemy():
 	#print("camp spawned enemy")
 	var enemy = enemy_scene.instantiate()

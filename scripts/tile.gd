@@ -123,6 +123,8 @@ func reached_desitation():
 		sprite_node.visible = true
 		if has_camp:
 			camp_node.show_sprite()
+	if has_camp:
+		camp_node.camp_moved()
 
 func has_drill():
 	if has_tower:
