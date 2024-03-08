@@ -75,31 +75,31 @@ func swap(new_pos):
 
 func dragged_dir(dir):
 	# you were dragged by the mouse this direction
-	match dir:
-		Direction.Up:
-			print("I was dragged up")
-		Direction.Right:
-			print("I was dragged right")
-		Direction.Down:
-			print("I was dragged down")
-		Direction.Left:
-			print("I was dragged left")
+	#match dir:
+		#Direction.Up:
+			#print("I was dragged up")
+		#Direction.Right:
+			#print("I was dragged right")
+		#Direction.Down:
+			#print("I was dragged down")
+		#Direction.Left:
+			#print("I was dragged left")
 	
 	if has_tower:
 		my_tower.face_dir(dir)
 
 func forced_dir(dir):
 	# you were forced this direction by another tile pushing you
-	match dir:
-		Direction.Up:
-			print("I was forced up")
-		Direction.Right:
-			print("I was forced right")
-		Direction.Down:
-			print("I was forced down")
-		Direction.Left:
-			print("I was forced left")
-	
+	#match dir:
+		#Direction.Up:
+			#print("I was forced up")
+		#Direction.Right:
+			#print("I was forced right")
+		#Direction.Down:
+			#print("I was forced down")
+		#Direction.Left:
+			#print("I was forced left")
+	pass
 	#if has_tower:
 		#my_tower.face_dir(dir)
 

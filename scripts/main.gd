@@ -51,9 +51,13 @@ func operate_drills():
 		if get_node("Castle Grid").grid[6][i].has_drill():
 			get_node("East Grid").drill_here(0, i-1)
 
+func random_swap_at(pos):
+	$"Castle Grid".random_swap_at(pos)
+
 func camp_reached_3(pos):
 	print("camp wants a push bomb from: ", pos)
 	# global pos is (304, 96) (bottom row), (304, 0) for center, (304, -96) for top row
+	# (-48, -304) for the north grid
 	# grid can convert pos to grid
 	# need main to coordinate from the camp's grid to the center grid
 	# camp kinda knows where it is
@@ -62,7 +66,22 @@ func camp_reached_3(pos):
 	# if x==304, shoot left 80 units
 	# how does the push bomb tell the center grid that it exploded?
 	# main gives push bomb a ref to center_grid to call when it lands?
+	if pos.y < -300:
+		# north grid
+		print()
+	elif pos.x > 300:
+		# east grid
+		print()
+	elif pos.y > 300:
+		# south grid
+		print()
+	elif pos.x < -300:
+		# west grid
+		print()
 	$"Castle Grid".random_swap_nearby(2,2)
+	# (304, 96) maps to Castle(5,5) = (96, 96)
+	# 304-96 = 208
+	print("(5,5): ", $"Castle Grid".grid[5][5].global_position)
 
 func _on_drill_timer_timeout():
 	operate_drills()

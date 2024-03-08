@@ -133,6 +133,10 @@ func try_swap(other_point: TilePoint):
 	swap_grid(carry_point, other_point)
 	carry_point = other_point
 
+func random_swap_at(pos):
+	var p = nearest_tile(pos)
+	random_swap_nearby(p.x, p.y)
+
 func random_swap_nearby(x: int, y: int):
 	#if you hit a tower, swap it with one of its neighbours
 	if grid[x][y].has_tower:
@@ -230,19 +234,19 @@ func swap_grid(a: TilePoint, b: TilePoint):
 
 func process_swap_directions(a: TilePoint, b: TilePoint):
 	if a.x < b.x:
-		print("1. a was moved right, b was moved left")
+		#print("1. a was moved right, b was moved left")
 		grid[a.x][a.y].dragged_dir(Direction.Right)
 		grid[b.x][b.y].forced_dir(Direction.Left)
 	elif a.x > b.x:
-		print("2. a was moved left, b was moved right")
+		#print("2. a was moved left, b was moved right")
 		grid[a.x][a.y].dragged_dir(Direction.Left)
 		grid[b.x][b.y].forced_dir(Direction.Right)
 	elif a.y > b.y:
-		print("3. a was moved up, b was moved down")
+		#print("3. a was moved up, b was moved down")
 		grid[a.x][a.y].dragged_dir(Direction.Up)
 		grid[b.x][b.y].forced_dir(Direction.Down)
 	elif a.y < b.y:
-		print("4. a was moved down, b was moved up")
+		#print("4. a was moved down, b was moved up")
 		grid[a.x][a.y].dragged_dir(Direction.Down)
 		grid[b.x][b.y].forced_dir(Direction.Up)
 		

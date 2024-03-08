@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ncvb0bxbbavh"]
+
+[ext_resource type="Texture2D" uid="uid://csin7w3drwdnq" path="res://sprites/push_indicator.png" id="1_iejl5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Indicator Sprite" type="Sprite2D" parent="."]
+z_index = 3
+texture = ExtResource("1_iejl5")
