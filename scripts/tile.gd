@@ -124,6 +124,12 @@ func reached_desitation():
 		if has_camp:
 			camp_node.show_sprite()
 
+func has_drill():
+	if has_tower:
+		if tower_type == TowerType.Drill:
+			return true
+	return false
+
 func get_drilled():
 	give_loot()
 	sprite_node.visible = false
