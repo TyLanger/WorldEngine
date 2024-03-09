@@ -22,15 +22,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Time.get_ticks_msec() > next_drill_time:
-		if is_correct_facing_and_position():
+		if is_correct_facing_and_position() && can_i_drill():
 			next_drill_time = Time.get_ticks_msec() + drill_rate_ms
 			# drill something
 			# figure out where I am and where my target must be
 			# target_tile.take_drill_damage()
 			drill_target()
+	if has_internal_stack:
+		# try to dump it behind you
+		#print("try dumping")
+		dump_resources()
 
 func can_i_drill():
-	print("no")
+	#print("no")
 	# if my internal storage is free, rock on
 	# if my storage is full, but the next tile is the same, rock on
 	# else no
@@ -41,21 +45,17 @@ func can_i_drill():
 	# elif same type
 
 func add_resources(wood, stone, gold):
-	wood_count += wood
-	stone_count += stone
+	
 	gold_count += gold
-	print("Gained ", wood, " wood. Total: ", wood_count)
-	print("Gained ", stone, " stone. Total: ", stone_count)
-	print("Gained ", gold, " gold. Total: ", gold_count)
 	
 	if has_internal_stack:
-		print("Adding to existing")
+		#print("Adding to existing")
 		match my_stack.get_resource_type():
 			ResourceType.Wood:
 				my_stack.add_resources(wood)
 			ResourceType.Stone:
 				my_stack.add_resources(stone)
-	else:
+	elif wood > 0 || stone > 0:
 		var stack = resource_stack_scn.instantiate()
 		#tile.grid
 		get_parent().get_parent().add_child(stack)
@@ -70,6 +70,26 @@ func add_resources(wood, stone, gold):
 
 		has_internal_stack = true
 		my_stack = stack
+
+func dump_resources():
+	# tile.grid
+	var my_point = get_parent().get_parent().nearest_tile(global_position)
+	var behind = my_point
+	#var v = Vector2i()
+	match facing:
+		Direction.Up:
+			# what's behind me?
+			behind.y += 1
+		Direction.Right:
+			behind.x -= 1
+		Direction.Down:
+			behind.y -= 1
+		Direction.Left:
+			behind.x += 1
+	
+	# tile.grid
+	if get_parent().get_parent().try_dump(behind.x, behind.y, my_stack):
+		has_internal_stack = false
 
 func drill_target():
 	# assume we have correct facing and position

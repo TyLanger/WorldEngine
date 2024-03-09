@@ -14,6 +14,8 @@ var tower_type
 var my_tower
 var has_camp = false
 var camp_node
+var has_resource = false
+var resource_stack_node
 
 var move_speed: float = 3.0
 var max_speed: float = 20.0
@@ -160,14 +162,22 @@ func give_loot(driller):
 		gold = 5
 	match tile_type:
 		TileType.Forest:
-			print("give forest loot")
+			#print("give forest loot")
 			wood = 3
 		TileType.Mountain:
-			print("give mountain loot")
+			#print("give mountain loot")
 			stone = 3
 		TileType.Field:
 			print("give field loot")
 	driller.add_resources(wood, stone, gold)
+
+func give_resource_stack(new_resource_stack):
+	#print("tile now has resource")
+	has_resource = true
+	resource_stack_node = new_resource_stack
+
+func get_resource_stack():
+	return resource_stack_node
 
 func choose_random_type():
 	var r = randi_range(0, 2)

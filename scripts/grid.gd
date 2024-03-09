@@ -195,6 +195,49 @@ func drill_here(x: int, y: int, driller):
 		elif gravity_diretion == Direction.Left:
 			swap_row_left(y)
 
+func try_dump(x, y, resource_stack_node) -> bool:
+	#print("dump here")
+	
+	# check this point
+	# does it have a tower?
+	# false
+	# is it the same type?
+	# true
+	# different type?
+	# false
+	# is it empty?
+	# true
+	if x < 0 || y < 0 || x >= grid_width || y >= grid_width:
+		# out of bounds
+		# it might be impossible to get them to face away from out of bounds
+		# tile faces the tile it entered. 
+		# It would need to enter from out of bounds to be facing away from the edge
+		print("out of bounds dump")
+		return false
+	
+	if grid[x][y].has_tower:
+		# can't add a resource stack if a tower exists there
+		return false
+	elif grid[x][y].has_resource:
+		var r_stack = grid[x][y].get_resource_stack()
+		# does it have the same type?
+		# r_stack is the one that already exists on another tile
+		# resource_stack_node is in the drill's buffer
+		if r_stack.resource_type == resource_stack_node.resource_type:
+			# add the contents together
+			r_stack.add_resources(resource_stack_node.count)
+			# drill buffer will travel to the point and then disappear
+			resource_stack_node.follow_then_delete_on_arrival(grid[x][y])
+			return true
+		else:
+			return false
+	else:
+		# tell the tile it has a new resource stack
+		# tell the stack what to follow
+		grid[x][y].give_resource_stack(resource_stack_node)
+		resource_stack_node.update_follow_target(grid[x][y])
+		return true
+
 func swap_col_down(x: int):
 	# drill broke the bottom
 	# it needs to move to the top
@@ -374,6 +417,7 @@ func are_diagonal(a: TilePoint, b: TilePoint):
 		return true
 	return false
 
+# Vector2i exists and is what I should've used
 class TilePoint:
 	var x: int
 	var y: int

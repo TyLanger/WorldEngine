@@ -10,7 +10,10 @@ var stone_sprite = preload("res://sprites/rock.png")
 var count = 0
 
 var target
-var move_speed = 100
+var move_speed = 200
+var moving = false
+
+var going_to_combine = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,8 +23,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if target != null:
-		#global_position = position.move_toward(target.global_position, move_speed * delta)
-		global_position = target.global_position
+		if moving:
+			global_position = position.move_toward(target.global_position, move_speed * delta)
+			if global_position.distance_squared_to(target.global_position) < 1:
+				moving = false
+				if going_to_combine:
+					# You've reached the destination and can delete yourself
+					queue_free()
+		else:
+			global_position = target.global_position
 		
 func create(type, amount, follow_target):
 	resource_type = type
@@ -33,6 +43,10 @@ func create(type, amount, follow_target):
 	count = amount
 	target = follow_target
 
+func update_follow_target(new_target):
+	target = new_target
+	moving = true
+
 func add_resources(amount):
 	count += amount
 	print("adding resources: +", amount, " = ", count)
@@ -40,3 +54,8 @@ func add_resources(amount):
 func get_resource_type():
 	return resource_type
 
+func follow_then_delete_on_arrival(new_target):
+	target = new_target
+	moving = true
+	# will delete when it reaches the position
+	going_to_combine = true
