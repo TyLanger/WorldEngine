@@ -20,6 +20,8 @@ var max_speed: float = 20.0
 var min_speed: float = 4.0
 var accel: float = 1.7
 
+var health = 15
+
 @onready var sprite_node = get_node("Sprite2D")
 
 @export var forest_tex: Texture
@@ -132,7 +134,15 @@ func has_drill():
 			return true
 	return false
 
+func take_drill_damage():
+	health -= 1
+
+func get_health():
+	return health
+
 func get_drilled():
+	# reset hp	
+	health = 15
 	give_loot()
 	sprite_node.visible = false
 	if has_camp:

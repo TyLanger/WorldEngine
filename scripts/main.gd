@@ -29,31 +29,19 @@ func build_drill():
 	print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
 	get_node("Castle Grid").spawn_tower(drill_scn, TowerType.Drill)
 
-func operate_drills():
-	# check in castle grid
-	# at the specific tiles
-	# if they have drills, turn them on
-	# and then kill the corresponding resource tiles?
+func drill(direction, x, y):
+	#print("main coordinating drilling")
+	match direction:
+		Direction.Up:
+			$"North Grid".drill_here(x, y)
+		Direction.Right:
+			$"East Grid".drill_here(x, y)
 	
-	# north is [1][0], [2][0], [3][0], ...
-	#if get_node("Castle Grid").grid[1][0].has_tower:
-		#get_node("North Grid").grid[0][4].get_node("Sprite2D").visible = false
-	#if get_node("Castle Grid").grid[2][0].has_tower:
-		#get_node("North Grid").grid[1][4].get_node("Sprite2D").visible = false
-	
-	# mine north
-	for i in range(1, 6):
-		if get_node("Castle Grid").grid[i][0].has_drill():
-			get_node("North Grid").drill_here(i-1, 4)
-			
-	# mine east
-	for i in range(1, 6):
-		if get_node("Castle Grid").grid[6][i].has_drill():
-			get_node("East Grid").drill_here(0, i-1)
 
 func random_swap_at(pos):
 	$"Castle Grid".random_swap_at(pos)
 
+# unused
 func camp_reached_3(pos):
 	print("camp wants a push bomb from: ", pos)
 	# global pos is (304, 96) (bottom row), (304, 0) for center, (304, -96) for top row
@@ -82,6 +70,3 @@ func camp_reached_3(pos):
 	# (304, 96) maps to Castle(5,5) = (96, 96)
 	# 304-96 = 208
 	print("(5,5): ", $"Castle Grid".grid[5][5].global_position)
-
-func _on_drill_timer_timeout():
-	operate_drills()

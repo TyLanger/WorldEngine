@@ -185,12 +185,15 @@ func is_either_being_carried(ax: int, ay: int, bx: int, by: int):
 	return grid[ax][ay].follow_mouse || grid[bx][by].follow_mouse
 
 func drill_here(x: int, y: int):
-	grid[x][y].get_drilled()
-	#swap this tile along the column to the top of the grid
-	if gravity_diretion == Direction.Down:
-		swap_col_down(x)
-	elif gravity_diretion == Direction.Left:
-		swap_row_left(y)
+	grid[x][y].take_drill_damage()
+	# did this damage kill it?
+	if grid[x][y].get_health() <= 0:
+		grid[x][y].get_drilled()
+		#swap this tile along the column to the top of the grid
+		if gravity_diretion == Direction.Down:
+			swap_col_down(x)
+		elif gravity_diretion == Direction.Left:
+			swap_row_left(y)
 
 func swap_col_down(x: int):
 	# drill broke the bottom
