@@ -202,6 +202,13 @@ func create_camp():
 		camp_node = camp
 		has_camp = true
 
+func can_build_here() -> bool:
+	if has_tower:
+		return false
+	if has_resource:
+		return false
+	return true
+
 func spawn_tower(tower_scn: PackedScene, t_type):
 	var tower = tower_scn.instantiate()
 	add_child(tower)

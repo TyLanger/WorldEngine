@@ -86,13 +86,13 @@ func update_selection_position():
 		selection.position = tile_selected.position
 
 func spawn_tower(tower_scn: PackedScene, tower_type):
-	if !tile_selected.has_tower:
+	if tile_selected.can_build_here():
 		#var tower = tower_scn.instantiate()
 		#tile_selected.add_child(tower)
 		#tile_selected.has_tower = true
 		tile_selected.spawn_tower(tower_scn, tower_type)
 	else:
-		print("Tile already has a tower")
+		print("Tile already has a tower or resource stack")
 
 func process_swapping():
 	if carrying_tile && player_controlled:
