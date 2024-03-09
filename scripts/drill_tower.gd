@@ -5,6 +5,14 @@ var facing = Direction.Up
 var drill_rate_ms = 200
 var next_drill_time = 0
 
+var wood_count = 0
+var stone_count = 0
+var gold_count = 0
+
+var resource_stack_scn = preload("res://scenes/resource_stack.tscn")
+var my_stack
+var has_internal_stack = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#is_correct_facing_and_position()
@@ -21,6 +29,48 @@ func _process(delta):
 			# target_tile.take_drill_damage()
 			drill_target()
 
+func can_i_drill():
+	print("no")
+	# if my internal storage is free, rock on
+	# if my storage is full, but the next tile is the same, rock on
+	# else no
+	
+	# check internal
+	if !has_internal_stack:
+		return true
+	# elif same type
+
+func add_resources(wood, stone, gold):
+	wood_count += wood
+	stone_count += stone
+	gold_count += gold
+	print("Gained ", wood, " wood. Total: ", wood_count)
+	print("Gained ", stone, " stone. Total: ", stone_count)
+	print("Gained ", gold, " gold. Total: ", gold_count)
+	
+	if has_internal_stack:
+		print("Adding to existing")
+		match my_stack.get_resource_type():
+			ResourceType.Wood:
+				my_stack.add_resources(wood)
+			ResourceType.Stone:
+				my_stack.add_resources(stone)
+	else:
+		var stack = resource_stack_scn.instantiate()
+		#tile.grid
+		get_parent().get_parent().add_child(stack)
+		# where should it spawn?
+		# maybe at where it was drilled?
+		# for now, spawn on the drill tower
+		stack.global_position = global_position
+		if wood > 0:
+			stack.create(ResourceType.Wood, wood, self)
+		elif stone > 0:
+			stack.create(ResourceType.Stone, stone, self)
+
+		has_internal_stack = true
+		my_stack = stack
+
 func drill_target():
 	# assume we have correct facing and position
 	# tile.grid
@@ -30,24 +80,24 @@ func drill_target():
 			# I am (1,0) to (5,0)
 			# maps to (0,4) to (4,4)
 			# tile.grid.main			
-			get_parent().get_parent().get_parent().drill(Direction.Up, my_point.x-1, 4)
+			get_parent().get_parent().get_parent().drill(Direction.Up, my_point.x-1, 4, self)
 		Direction.Right:
 			# if we are in Center(6,1), our target is East(0,0)
 			# our pos will be (144, -96)
 			# if we are in Center(6,2), our target is East(0,1)
 			# our pos will be (144, -48)
 			# tile.grid.main			
-			get_parent().get_parent().get_parent().drill(Direction.Right, 0, my_point.y-1)
+			get_parent().get_parent().get_parent().drill(Direction.Right, 0, my_point.y-1, self)
 		Direction.Down:
 			# I am (1,6) to (5,6)
 			# maps to (0,0) to (4,0)
 			# tile.grid.main			
-			get_parent().get_parent().get_parent().drill(Direction.Down, my_point.x-1, 0)
+			get_parent().get_parent().get_parent().drill(Direction.Down, my_point.x-1, 0, self)
 		Direction.Left:
 			# I am (0,1) to (0,5)
 			# maps to (4,0) to (4,4)
 			# tile.grid.main			
-			get_parent().get_parent().get_parent().drill(Direction.Left, 4, my_point.y-1)
+			get_parent().get_parent().get_parent().drill(Direction.Left, 4, my_point.y-1, self)
 
 func is_correct_facing_and_position() -> bool:
 	# can only drill if on the outskirts

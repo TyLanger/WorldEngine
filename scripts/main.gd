@@ -29,13 +29,13 @@ func build_drill():
 	print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
 	get_node("Castle Grid").spawn_tower(drill_scn, TowerType.Drill)
 
-func drill(direction, x, y):
+func drill(direction, x, y, driller):
 	#print("main coordinating drilling")
 	match direction:
 		Direction.Up:
-			$"North Grid".drill_here(x, y)
+			$"North Grid".drill_here(x, y, driller)
 		Direction.Right:
-			$"East Grid".drill_here(x, y)
+			$"East Grid".drill_here(x, y, driller)
 	
 
 func random_swap_at(pos):

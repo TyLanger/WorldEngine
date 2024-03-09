@@ -184,11 +184,11 @@ func swap_helper(ax: int, ay: int, bx: int, by: int):
 func is_either_being_carried(ax: int, ay: int, bx: int, by: int):
 	return grid[ax][ay].follow_mouse || grid[bx][by].follow_mouse
 
-func drill_here(x: int, y: int):
+func drill_here(x: int, y: int, driller):
 	grid[x][y].take_drill_damage()
 	# did this damage kill it?
 	if grid[x][y].get_health() <= 0:
-		grid[x][y].get_drilled()
+		grid[x][y].get_drilled(driller)
 		#swap this tile along the column to the top of the grid
 		if gravity_diretion == Direction.Down:
 			swap_col_down(x)

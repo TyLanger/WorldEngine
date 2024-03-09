@@ -140,10 +140,10 @@ func take_drill_damage():
 func get_health():
 	return health
 
-func get_drilled():
+func get_drilled(driller):
 	# reset hp	
 	health = 15
-	give_loot()
+	give_loot(driller)
 	sprite_node.visible = false
 	if has_camp:
 		camp_node.queue_free()
@@ -151,16 +151,23 @@ func get_drilled():
 	choose_random_type()
 	create_camp()
 
-func give_loot():
+func give_loot(driller):
+	var wood = 0
+	var stone = 0
+	var gold = 0
 	if has_camp:
 		print("give camp loot")
+		gold = 5
 	match tile_type:
 		TileType.Forest:
 			print("give forest loot")
+			wood = 3
 		TileType.Mountain:
 			print("give mountain loot")
+			stone = 3
 		TileType.Field:
 			print("give field loot")
+	driller.add_resources(wood, stone, gold)
 
 func choose_random_type():
 	var r = randi_range(0, 2)
