@@ -10,7 +10,7 @@ var stone_sprite = preload("res://sprites/rock.png")
 var count = 0
 
 var target
-var move_speed = 200
+var move_speed = 300
 var moving = false
 
 var going_to_combine = false

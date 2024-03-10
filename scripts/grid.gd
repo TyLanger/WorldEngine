@@ -119,6 +119,17 @@ func try_swap(other_point: TilePoint):
 	if !grid[other_point.x][other_point.y].can_swap():
 		return
 	
+	# swap combine resources
+	# do this before the tiles get swapped where the names will get swapped
+	# if you're holding wood, pick up any wood you find
+	# the carried one gets bigger and the rest disappear
+	
+	# if carry has resources, check the others
+	# if they match, take them
+	var carry_node = grid[carry_point.x][carry_point.y]
+	var other_node = grid[other_point.x][other_point.y]
+	process_resource_collisions(carry_node, other_node)
+	
 	# tell it that it got swapped?
 	# only runs for the tile being force-moved, not the one in your hand.
 	# Should this be a signal? Maybe in swap_grid?
@@ -132,11 +143,21 @@ func try_swap(other_point: TilePoint):
 	process_swap_directions(carry_point, other_point)
 	swap_grid(carry_point, other_point)
 	carry_point = other_point
-	
-	# swap combine resources
-	# goes somewhere here
-	# if you're holding wood, pick up any wood you find
-	# the carried one gets bigger and the rest disappear
+
+func process_resource_collisions(carry_node, other_node):
+	# both need resources to care about collisions
+	if carry_node.has_resource && other_node.has_resource:
+		# are they the same?
+		var carry_stack = carry_node.get_resource_stack()
+		var other_stack = other_node.get_resource_stack()
+		if carry_stack.resource_type == other_stack.resource_type:
+			# pick up theirs
+			# add their count
+			carry_stack.add_resources(other_stack.count)
+			# set them to be deleted
+			other_stack.follow_then_delete_on_arrival(carry_node)
+			# tell the other it now has nothing
+			other_node.has_resource = false
 
 func random_swap_at(pos):
 	var p = nearest_tile(pos)
