@@ -28,6 +28,18 @@ grid_width = 5
 grid_height = 5
 gravity_diretion = 3
 
+[node name="South Grid" parent="." instance=ExtResource("1_y4y31")]
+position = Vector2(0, 152)
+grid_width = 5
+grid_height = 5
+gravity_diretion = 0
+
+[node name="West Grid" parent="." instance=ExtResource("1_y4y31")]
+position = Vector2(-152, 0)
+grid_width = 5
+grid_height = 5
+gravity_diretion = 1
+
 [node name="Top Right" type="Sprite2D" parent="."]
 position = Vector2(510, -254)
 texture = ExtResource("2_n1fni")

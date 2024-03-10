@@ -85,7 +85,7 @@ func calculate_fire_destination():
 		return global_position + Vector2(0, -208)
 	elif global_position.x < -300:
 		# west grid
-		return global_position + Vector2(-208, 0)
+		return global_position + Vector2(208, 0)
 
 
 func spawn_enemy():

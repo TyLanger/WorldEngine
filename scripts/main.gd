@@ -36,6 +36,10 @@ func drill(direction, x, y, driller):
 			$"North Grid".drill_here(x, y, driller)
 		Direction.Right:
 			$"East Grid".drill_here(x, y, driller)
+		Direction.Down:
+			$"South Grid".drill_here(x, y, driller)
+		Direction.Left:
+			$"West Grid".drill_here(x, y, driller)
 	
 
 func random_swap_at(pos):

@@ -221,6 +221,16 @@ func drill_here(x: int, y: int, driller):
 		elif gravity_diretion == Direction.Left:
 			swap_row_left(y)
 
+		match gravity_diretion:
+			Direction.Down:
+				swap_col_down(x)
+			Direction.Left:
+				swap_row_left(y)
+			Direction.Up:
+				swap_col_up(x)
+			Direction.Right:
+				swap_row_right(y)
+
 func try_dump(x, y, resource_stack_node) -> bool:
 	#print("dump here")
 	
@@ -292,6 +302,34 @@ func swap_row_left(y: int):
 	for i in (grid_width-1):
 		grid[i][y] = grid[i+1][y]
 	grid[grid_width-1][y] = temp
+	
+	var tile_p = TilePoint.new()
+	tile_p.y = y
+	for i in grid_width:
+		tile_p.x = i
+		grid[i][y].swap(anchor_from_point(tile_p))
+
+func swap_col_up(x: int):
+	#var temp = grid[x][grid_height-1]
+	var temp = grid[x][0]
+	for i in (grid_height-1):
+		grid[x][i] = grid[x][i+1]
+	grid[x][grid_height-1] = temp
+	
+	var tile_p = TilePoint.new()
+	tile_p.x = x
+	for i in grid_height:
+		tile_p.y = i
+		grid[x][i].swap(anchor_from_point(tile_p))
+
+func swap_row_right(y: int):
+	#doesnt work yet
+	# left edge is 0
+	var temp = grid[grid_width-1][y]
+	for i in (grid_width-1):
+		var offset = grid_width - 1 - i
+		grid[offset][y] = grid[offset-1][y]
+	grid[0][y] = temp
 	
 	var tile_p = TilePoint.new()
 	tile_p.y = y
