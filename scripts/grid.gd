@@ -132,6 +132,11 @@ func try_swap(other_point: TilePoint):
 	process_swap_directions(carry_point, other_point)
 	swap_grid(carry_point, other_point)
 	carry_point = other_point
+	
+	# swap combine resources
+	# goes somewhere here
+	# if you're holding wood, pick up any wood you find
+	# the carried one gets bigger and the rest disappear
 
 func random_swap_at(pos):
 	var p = nearest_tile(pos)
@@ -139,7 +144,7 @@ func random_swap_at(pos):
 
 func random_swap_nearby(x: int, y: int):
 	#if you hit a tower, swap it with one of its neighbours
-	if grid[x][y].has_tower:
+	if grid[x][y].has_tower || grid[x][y].has_resource:
 		var r = randi_range(0, 3)
 		match r:
 			0:
