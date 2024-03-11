@@ -5,6 +5,11 @@ var facing = Direction.Up
 var drill_rate_ms = 200
 var next_drill_time = 0
 
+var is_drilling = false
+@onready var drill_sprite = $"Drill Sprite"
+var idle_sprite = preload("res://sprites/drill.png")
+var drilling_sprite = preload("res://sprites/drilling.png")
+
 var wood_count = 0
 var stone_count = 0
 var gold_count = 0
@@ -32,6 +37,11 @@ func _process(delta):
 			# figure out where I am and where my target must be
 			# target_tile.take_drill_damage()
 			drill_target()
+			is_drilling = true
+			update_drill_sprite()
+		else:
+			is_drilling = false
+			update_drill_sprite()
 	if has_internal_stack:
 		# try to dump it behind you
 		#print("try dumping")
@@ -47,6 +57,13 @@ func can_i_drill():
 	if !has_internal_stack:
 		return true
 	# elif same type
+
+func update_drill_sprite():
+	if is_drilling:
+		drill_sprite.texture = drilling_sprite		
+	else:
+		drill_sprite.texture = idle_sprite
+		
 
 func add_resources(wood, stone, gold):
 	
