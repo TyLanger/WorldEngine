@@ -31,6 +31,7 @@ func _process(delta):
 	position = position.move_toward(position + dir, delta * move_speed)
 	if position.distance_squared_to(Vector2.ZERO) < 1:
 		print("Enemy reached castle")
+		get_parent().get_node("Castle").take_damage()
 		queue_free()
 	
 func kill():

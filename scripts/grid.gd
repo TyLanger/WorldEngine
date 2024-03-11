@@ -215,11 +215,6 @@ func drill_here(x: int, y: int, driller):
 	# did this damage kill it?
 	if grid[x][y].get_health() <= 0:
 		grid[x][y].get_drilled(driller)
-		#swap this tile along the column to the top of the grid
-		if gravity_diretion == Direction.Down:
-			swap_col_down(x)
-		elif gravity_diretion == Direction.Left:
-			swap_row_left(y)
 
 		match gravity_diretion:
 			Direction.Down:

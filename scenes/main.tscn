@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ddm3x"]
 [ext_resource type="PackedScene" uid="uid://bd3t17ocbs6td" path="res://scenes/grid.tscn" id="1_y4y31"]
 [ext_resource type="PackedScene" uid="uid://dgmgnyybg7w3m" path="res://scenes/drill_tower.tscn" id="2_cpkls"]
-[ext_resource type="Texture2D" uid="uid://bboqry6xl3d2f" path="res://icon.svg" id="2_n1fni"]
 [ext_resource type="PackedScene" uid="uid://cn8h31owc2j58" path="res://scenes/cannon.tscn" id="3_1uei8"]
+[ext_resource type="PackedScene" uid="uid://bfsomep3eary6" path="res://scenes/castle.tscn" id="5_lp2vq"]
 [ext_resource type="PackedScene" uid="uid://cb80i026tnqb4" path="res://scenes/tower_build_menu.tscn" id="5_s51tr"]
 
 [node name="Main Node" type="Node2D"]
@@ -40,22 +40,8 @@ grid_width = 5
 grid_height = 5
 gravity_diretion = 1
 
-[node name="Top Right" type="Sprite2D" parent="."]
-position = Vector2(510, -254)
-texture = ExtResource("2_n1fni")
-
-[node name="Top Left" type="Sprite2D" parent="."]
-position = Vector2(-507, -259)
-texture = ExtResource("2_n1fni")
-
-[node name="Bot Right" type="Sprite2D" parent="."]
-position = Vector2(510, 256)
-texture = ExtResource("2_n1fni")
-
-[node name="Bot Left" type="Sprite2D" parent="."]
-position = Vector2(-507, 259)
-texture = ExtResource("2_n1fni")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Castle" parent="." instance=ExtResource("5_lp2vq")]
 
 [node name="Tower Build Menu" parent="." instance=ExtResource("5_s51tr")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

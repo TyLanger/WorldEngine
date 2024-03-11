@@ -6,7 +6,7 @@ var tower_build_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tower_build_menu = get_node("Tower Build Menu")
+	tower_build_menu = $"Tower Build Menu"
 	tower_build_menu.on_tower_build_button_pressed.connect(try_build_tower)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
