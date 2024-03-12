@@ -29,6 +29,7 @@ var health = 15
 @export var forest_tex: Texture
 @export var mountain_tex: Texture
 @export var field_tex: Texture
+@export var spooky_tex: Texture
 
 var tile_type = TileType.Field
 
@@ -37,7 +38,7 @@ var random_type = true
 @export var camp_scene: PackedScene
 
 enum TileType {
-	Forest, Mountain, Field
+	Forest, Mountain, Field, SpookyTree
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -169,6 +170,8 @@ func give_loot(driller):
 			stone = 3
 		TileType.Field:
 			print("give field loot")
+		TileType.SpookyTree:
+			wood = 5
 	driller.add_resources(wood, stone, gold)
 
 func give_resource_stack(new_resource_stack):
@@ -179,8 +182,16 @@ func give_resource_stack(new_resource_stack):
 func get_resource_stack():
 	return resource_stack_node
 
+func is_tree():
+	return tile_type == TileType.Forest
+
+func make_spooky_tree():
+	# probably just change to a different tree sprite
+	tile_type = TileType.SpookyTree
+	sprite_node.texture = spooky_tex
+
 func choose_random_type():
-	var r = randi_range(0, 2)
+	var r = randi_range(0, 1)
 	match r:
 		0:
 			sprite_node.texture = forest_tex
@@ -201,6 +212,9 @@ func create_camp():
 		add_child(camp)
 		camp_node = camp
 		has_camp = true
+		# only put camps on fields
+		sprite_node.texture = field_tex
+		tile_type = TileType.Field
 
 func can_build_here() -> bool:
 	if has_tower:

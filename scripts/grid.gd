@@ -227,6 +227,80 @@ func drill_here(x: int, y: int, driller):
 				swap_col_up(x)
 			Direction.Right:
 				swap_row_right(y)
+		
+		# doesn't seem to be a problem that 1 tree is invisible for ~0.5s
+		if detect_9_trees():
+			# spawn boss here
+			pass
+
+
+func detect_9_trees():
+	# can't make a 3x3 in a 5x5 if the center doesn't match
+	# easy efficiency
+	if !grid[2][2].is_tree():
+		return false
+	# how do I find it?
+	# check the neighbours of the center tile
+	# if that doesn't work, check the 8 around it
+	# are_all_neighbours_trees()
+	if are_all_neighbours_trees(1,1):
+		create_big_tree(1, 1)
+		return true
+	if are_all_neighbours_trees(1,2):
+		create_big_tree(1, 2)
+		return true
+	if are_all_neighbours_trees(1,3):
+		create_big_tree(1, 3)
+		return true
+	if are_all_neighbours_trees(2,1):
+		create_big_tree(2, 1)
+		return true
+	if are_all_neighbours_trees(2,2):
+		create_big_tree(2, 2)
+		return true
+	if are_all_neighbours_trees(2,3):
+		create_big_tree(2, 3)
+		return true
+	if are_all_neighbours_trees(3,1):
+		create_big_tree(3, 1)
+		return true
+	if are_all_neighbours_trees(3,2):
+		create_big_tree(3, 2)
+		return true
+	if are_all_neighbours_trees(3,3):
+		create_big_tree(3, 3)
+		return true
+	return false
+
+func are_all_neighbours_trees(x, y):
+	if !grid[x+1][y+1].is_tree():
+		return false
+	if !grid[x+1][y].is_tree():
+		return false
+	if !grid[x+1][y-1].is_tree():
+		return false
+	if !grid[x-1][y+1].is_tree():
+		return false
+	if !grid[x-1][y].is_tree():
+		return false
+	if !grid[x-1][y-1].is_tree():
+		return false
+	if !grid[x][y+1].is_tree():
+		return false
+	if !grid[x][y-1].is_tree():
+		return false
+	return true
+
+func create_big_tree(x, y):
+	grid[x][y].make_spooky_tree()
+	grid[x][y-1].make_spooky_tree()
+	grid[x][y+1].make_spooky_tree()
+	grid[x+1][y].make_spooky_tree()
+	grid[x+1][y-1].make_spooky_tree()
+	grid[x+1][y+1].make_spooky_tree()
+	grid[x-1][y].make_spooky_tree()
+	grid[x-1][y-1].make_spooky_tree()
+	grid[x-1][y+1].make_spooky_tree()
 
 func try_dump(x, y, resource_stack_node) -> bool:
 	#print("dump here")
@@ -242,10 +316,6 @@ func try_dump(x, y, resource_stack_node) -> bool:
 	# true
 	if x < 0 || y < 0 || x >= grid_width || y >= grid_width:
 		# out of bounds
-		# it might be impossible to get them to face away from out of bounds
-		# tile faces the tile it entered. 
-		# It would need to enter from out of bounds to be facing away from the edge
-		print("out of bounds dump")
 		return false
 	
 	if grid[x][y].has_tower:
