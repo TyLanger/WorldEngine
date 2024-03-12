@@ -6,6 +6,7 @@ var wood_sprite = preload("res://sprites/log.png")
 var stone_sprite = preload("res://sprites/rock.png")
 
 @onready var sprite = $"Resource Sprite"
+@onready var label = $"Resource Sprite/Count Label"
 
 var count = 0
 
@@ -42,6 +43,7 @@ func create(type, amount, follow_target):
 			sprite.texture = stone_sprite
 	count = amount
 	target = follow_target
+	label.text = str(count)
 
 func update_follow_target(new_target):
 	target = new_target
@@ -49,7 +51,8 @@ func update_follow_target(new_target):
 
 func add_resources(amount):
 	count += amount
-	print("adding resources: +", amount, " = ", count)
+	#print("adding resources: +", amount, " = ", count)
+	label.text = str(count)
 
 func get_resource_type():
 	return resource_type
