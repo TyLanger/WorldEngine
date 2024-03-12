@@ -29,7 +29,7 @@ func _process(delta):
 		dir = dir.normalized()
 	
 	position = position.move_toward(position + dir, delta * move_speed)
-	if position.distance_squared_to(Vector2.ZERO) < 1:
+	if position.distance_squared_to(Vector2.ZERO) < 100:
 		print("Enemy reached castle")
 		get_parent().get_node("Castle").take_damage()
 		queue_free()

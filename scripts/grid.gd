@@ -48,6 +48,8 @@ func _ready():
 			tile.position = position + Vector2(tile_width * centered_x, tile_width * centered_y)
 			if player_controlled:
 				tile.random_type = false
+				if i == 3 && j == 3:
+					tile.swappable = false
 			add_child(tile)
 			row.append(tile)
 		grid.append(row)
