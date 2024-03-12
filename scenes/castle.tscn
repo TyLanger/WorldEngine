@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfsomep3eary6"]
+[gd_scene load_steps=7 format=3 uid="uid://bfsomep3eary6"]
 
 [ext_resource type="Script" path="res://scripts/castle.gd" id="1_f0bht"]
 [ext_resource type="Texture2D" uid="uid://byu82314q4tww" path="res://sprites/castle.png" id="1_nflhu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5tjip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xiwd3"]
+bg_color = Color(0.843137, 0.317647, 0.572549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k27jn"]
+bg_color = Color(0.215686, 0.0352941, 0.313726, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml3a4"]
+bg_color = Color(0.721569, 1, 0.941176, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_f0bht")
@@ -9,3 +26,36 @@ script = ExtResource("1_f0bht")
 [node name="Castle Sprite" type="Sprite2D" parent="."]
 z_index = 2
 texture = ExtResource("1_nflhu")
+
+[node name="HealthBar" type="ProgressBar" parent="Castle Sprite"]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = -24.0
+offset_bottom = -18.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_5tjip")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xiwd3")
+step = 1.0
+value = 60.0
+show_percentage = false
+
+[node name="DamageBar" type="ProgressBar" parent="Castle Sprite/HealthBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_k27jn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ml3a4")
+value = 80.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="Castle Sprite/HealthBar"]
+one_shot = true
+
+[connection signal="timeout" from="Castle Sprite/HealthBar/Timer" to="." method="_on_timer_timeout"]
