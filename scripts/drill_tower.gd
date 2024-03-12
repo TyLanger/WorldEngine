@@ -21,6 +21,9 @@ var resource_stack_scn = preload("res://scenes/resource_stack.tscn")
 var my_stack
 var has_internal_stack = false
 
+var wood_needed = 5
+var stone_needed = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#is_correct_facing_and_position()
@@ -52,6 +55,10 @@ func can_i_drill():
 	# if my internal storage is free, rock on
 	# if my storage is full, but the next tile is the same, rock on
 	# else no
+	
+	# have I been paid for?
+	if wood_needed > 0 || stone_needed > 0:
+		return false
 	
 	# check internal
 	if !has_internal_stack:

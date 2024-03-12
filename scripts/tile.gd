@@ -22,7 +22,10 @@ var max_speed: float = 20.0
 var min_speed: float = 4.0
 var accel: float = 1.7
 
-var health = 15
+# drill does 1 damage every 0.2s
+# 15 is 3s to drill
+# 25 is 5s to drill
+var health = 25 
 
 @onready var sprite_node = get_node("Sprite2D")
 
@@ -134,6 +137,12 @@ func reached_desitation():
 func has_drill():
 	if has_tower:
 		if tower_type == TowerType.Drill:
+			return true
+	return false
+
+func has_cannon():
+	if has_tower:
+		if tower_type == TowerType.Cannon:
 			return true
 	return false
 

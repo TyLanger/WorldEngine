@@ -6,7 +6,6 @@ extends Node2D
 @export var tile_scene: PackedScene
 
 var tile_width = 48
-var offset = 0
 
 var grid
 
@@ -21,6 +20,9 @@ var tile_selected
 @export var player_controlled = false
 var selection
 var frame_last_clicked = 0
+
+# spawn starting resources
+var resource_stack_scn = preload("res://scenes/resource_stack.tscn")
 
 @export var gravity_diretion = Direction.Down
 
@@ -53,6 +55,24 @@ func _ready():
 			add_child(tile)
 			row.append(tile)
 		grid.append(row)
+	
+	# spawn starting resources
+	if player_controlled:
+		var wood = resource_stack_scn.instantiate()
+		add_child(wood)
+		
+		var wood_tile = grid[2][5]
+		# enough to create a drill and be 1 forest from making a cannon
+		wood.create(ResourceType.Wood, 6, wood_tile)
+		wood_tile.give_resource_stack(wood)
+		
+		var stone = resource_stack_scn.instantiate()
+		add_child(stone)
+		
+		var stone_tile = grid[4][5]
+		# enough to create a drill and be 1 mountain from making a cannon
+		stone.create(ResourceType.Stone, 7, stone_tile)
+		stone_tile.give_resource_stack(stone)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -160,6 +180,38 @@ func process_resource_collisions(carry_node, other_node):
 			other_stack.follow_then_delete_on_arrival(carry_node)
 			# tell the other it now has nothing
 			other_node.has_resource = false
+	elif carry_node.has_resource && other_node.has_tower:
+		# paying for a drill
+		pay_for_tower(carry_node, other_node)
+
+func pay_for_tower(carry_node, other_node):
+	# works for both bc they both have a "wood_needed" field
+	var res = carry_node.get_resource_stack()
+	var other_tower = other_node.my_tower
+	if other_tower.wood_needed > 0 && res.resource_type == ResourceType.Wood:
+		
+		# there's probably a way to do this with clamp() or max()
+		var wood_drill_needs = other_tower.wood_needed
+		if wood_drill_needs >= res.count:
+			# drill needs 6, res.count has 2
+			other_tower.wood_needed -= res.count
+			res.count = 0
+			res.follow_then_delete_on_arrival(other_node)
+			carry_node.has_resource = false
+		elif wood_drill_needs < res.count:
+			# drill needs 3, res.count has 15
+			other_tower.wood_needed = 0
+			res.add_resources(-wood_drill_needs)
+	elif other_tower.stone_needed > 0 && res.resource_type == ResourceType.Stone:
+		var stone_drill_needs = other_tower.stone_needed
+		if stone_drill_needs >= res.count:
+			other_tower.stone_needed -= res.count
+			res.count = 0
+			res.follow_then_delete_on_arrival(other_node)
+			carry_node.has_resource = false
+		elif stone_drill_needs <= res.count:
+			other_tower.stone_needed = 0
+			res.add_resources(-stone_drill_needs)
 
 func random_swap_at(pos):
 	var p = nearest_tile(pos)

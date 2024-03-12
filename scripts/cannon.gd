@@ -4,6 +4,9 @@ extends Node2D
 
 var facing = Direction.Up
 
+var wood_needed = 4
+var stone_needed = 7
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,10 +22,16 @@ func _on_area_2d_area_entered(area: Area2D):
 		fire_cannonball()
 
 func fire_cannonball():
-	var ball = cannonball_scn.instantiate()
-	ball.fire(get_fire_direction())
-	ball.set_deferred("global_position", global_position)
-	get_parent().get_parent().get_parent().call_deferred("add_child", ball)
+	if can_fire():
+		var ball = cannonball_scn.instantiate()
+		ball.fire(get_fire_direction())
+		ball.set_deferred("global_position", global_position)
+		get_parent().get_parent().get_parent().call_deferred("add_child", ball)
+
+func can_fire():
+	if wood_needed > 0 || stone_needed > 0:
+		return false
+	return true
 
 func get_fire_direction():
 	match facing:
