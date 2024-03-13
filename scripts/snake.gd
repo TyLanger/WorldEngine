@@ -7,6 +7,7 @@ extends Node2D
 # start at the closest one and then go to the next
 
 var just_spawned = true
+var delay
 
 var base_move_speed = 100
 var max_move_speed = 200
@@ -17,6 +18,11 @@ var path_index = 0
 var current_direction
 var spawn_direction
 
+var follower
+
+@export var body_sprite: Texture
+@export var tail_sprite: Texture
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -25,15 +31,33 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if just_spawned:
-		get_to_corner(delta)
+		if delay > 0:
+			delay -= delta
+		else:
+			get_to_corner(delta)
 	else:
 		position = position.move_toward(path[path_index], base_move_speed * delta)
+		look_at(path[path_index])
 		if position.distance_squared_to(path[path_index]) < 1:
+
 			path_index += 1
 			if path.size() == path_index:
 				# go to the next path
 				path_index = 0
 				get_next_path()
+
+func setup(segments, start_delay):
+	calculate_spawn_direction()
+
+	delay = start_delay
+	if segments > 0:
+		$"Snake Head".texture = body_sprite
+		if segments == 9:
+			$"Snake Head".texture = tail_sprite
+
+
+
+
 
 func calculate_spawn_direction():
 	if global_position.y < -200:
@@ -52,6 +76,7 @@ func get_to_corner(delta):
 		#north grid
 		# move right
 		position = position.move_toward(position + Vector2(100, 0), base_move_speed * delta)
+		look_at(position + Vector2(100, 0))
 		if position.x > 350:
 			# reached the corner
 			# turn and go to the east grid
@@ -62,6 +87,8 @@ func get_to_corner(delta):
 		
 		# east grid
 		position = position.move_toward(position + Vector2(0, 100), base_move_speed * delta)
+		look_at(position + Vector2(0, 100))
+		
 		# needs to match the starting point of th next path
 		if position.y > 255:
 			# reached the corner
@@ -73,6 +100,8 @@ func get_to_corner(delta):
 		
 		# south grid
 		position = position.move_toward(position + Vector2(-100, 0), base_move_speed * delta)
+		look_at(position + Vector2(-100, 0))
+		
 		# needs to match the starting point of th next path		
 		if position.x < -399:
 			# reached the corner
@@ -84,6 +113,8 @@ func get_to_corner(delta):
 		
 		# west grid
 		position = position.move_toward(position + Vector2(0, -100), base_move_speed * delta)
+		look_at(position + Vector2(0, -100))
+		
 		# needs to match the starting point of th next path
 		if position.y < -255:
 			# reached the corner
@@ -118,7 +149,7 @@ func get_north_path():
 	return north_array
 
 func get_east_path():
-	print("getting east path")
+	#print("getting east path")
 	var east = []
 	east.append(Vector2(352, -48))
 	east.append(Vector2(256, -48))

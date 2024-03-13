@@ -54,8 +54,10 @@ func selected_update_ui(selected_tile):
 func spawn_boss(pos):
 	# only spawn 1
 	if !boss_spawned:
-		var snake = snake_scn.instantiate()
-		add_child(snake)
-		snake.global_position = pos
-		snake.calculate_spawn_direction()
 		boss_spawned = true
+		for i in 10:
+			var snake = snake_scn.instantiate()
+			add_child(snake)
+			snake.global_position = pos
+			snake.setup(i, i * 0.48)
+			

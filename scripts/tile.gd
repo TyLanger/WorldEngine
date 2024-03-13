@@ -211,7 +211,7 @@ func make_spooky_tree():
 
 func choose_random_type():
 	var r = randi_range(0, 1)
-	#var r = 0
+	r = 0
 	match r:
 		0:
 			sprite_node.texture = forest_tex
