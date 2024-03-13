@@ -1,10 +1,12 @@
 extends Node2D
 
 var move_speed = 50.0
+@onready var sprite = $"EnemySprite"
+var castle
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	castle = get_parent().get_node("Castle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,10 +30,13 @@ func _process(delta):
 	else:
 		dir = dir.normalized()
 	
+	if dir.x > 0:
+		sprite.scale = Vector2(-1.0, 1.0)
+	
 	position = position.move_toward(position + dir, delta * move_speed)
 	if position.distance_squared_to(Vector2.ZERO) < 100:
-		print("Enemy reached castle")
-		get_parent().get_node("Castle").take_damage()
+		#print("Enemy reached castle")
+		castle.take_damage()
 		queue_free()
 	
 func kill():

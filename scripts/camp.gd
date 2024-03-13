@@ -89,12 +89,13 @@ func calculate_fire_destination():
 
 
 func spawn_enemy():
-	#print("camp spawned enemy")
-	var enemy = enemy_scene.instantiate()
-	enemy.global_position = global_position
-	# the enemy's parent is the main root node
-	# if the grid is the parent, it gets (0,0) wrong
-	get_parent().get_parent().get_parent().add_child(enemy)
+	if times_moved > 1:
+		#print("camp spawned enemy")
+		var enemy = enemy_scene.instantiate()
+		enemy.global_position = global_position
+		# the enemy's parent is the main root node
+		# if the grid is the parent, it gets (0,0) wrong
+		get_parent().get_parent().get_parent().add_child(enemy)
 
 func _on_timer_timeout():
 	spawn_enemy()
