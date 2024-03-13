@@ -38,7 +38,10 @@ func _process(delta):
 		#print("Enemy reached castle")
 		castle.take_damage()
 		queue_free()
-	
+
+func take_damage(damage):
+	kill()
+
 func kill():
 	print("Enemy killed")
 	queue_free()

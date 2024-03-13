@@ -6,6 +6,7 @@ var tower_build_menu
 
 @export var snake_scn: PackedScene
 var boss_spawned = false
+var snakes_dead = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,3 +62,7 @@ func spawn_boss(pos):
 			snake.global_position = pos
 			snake.setup(i, i * 0.48)
 			
+func snake_part_died():
+	snakes_dead += 1
+	if snakes_dead == 10:
+		print("All snakes dead. You win!")

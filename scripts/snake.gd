@@ -20,6 +20,8 @@ var spawn_direction
 
 var follower
 
+var health = 10
+
 @export var body_sprite: Texture
 @export var tail_sprite: Texture
 
@@ -55,7 +57,16 @@ func setup(segments, start_delay):
 		if segments == 9:
 			$"Snake Head".texture = tail_sprite
 
+func take_damage(damage):
+	#if just_spawned:
+		#return
+	health -= damage
+	if health <= 0:
+		kill()
 
+func kill():
+	get_parent().snake_part_died()
+	queue_free()
 
 
 

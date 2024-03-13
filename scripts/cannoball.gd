@@ -22,7 +22,7 @@ func _on_area_2d_area_entered(area):
 		print("hit enemy")
 		# am I supposed to make the area the root?
 		# or attach a script to the area?
-		area.get_parent().kill()
+		area.get_parent().take_damage(1)
 
 
 func _on_timer_timeout():
