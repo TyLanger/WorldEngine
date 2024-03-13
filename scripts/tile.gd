@@ -224,7 +224,7 @@ func choose_random_type():
 			tile_type = TileType.Field
 
 func create_camp():
-	var r = randi_range(0, 10)
+	var r = randi_range(0, 15)
 	# 10% chance to make a camp
 	if r == 0:
 		var camp = camp_scene.instantiate()

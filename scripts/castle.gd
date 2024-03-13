@@ -1,6 +1,6 @@
 extends Node2D
 
-var health = 20
+var health = 35
 
 @onready var health_bar = $"Castle Sprite/HealthBar"
 @onready var damage_bar = $"Castle Sprite/HealthBar/DamageBar"
