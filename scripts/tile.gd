@@ -25,7 +25,8 @@ var accel: float = 1.7
 # drill does 1 damage every 0.2s
 # 15 is 3s to drill
 # 25 is 5s to drill
-var health = 25 
+var health = 25
+var base_health = 25
 
 @onready var sprite_node = get_node("Sprite2D")
 
@@ -55,7 +56,9 @@ func _ready():
 		choose_random_type()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	# rotation decay
+	rotation = move_toward(rotation, 0, 0.15 * delta)
 	if follow_mouse:
 		# clamp near the anchor point + 0.6 of a block
 		var mouse = get_global_mouse_position()
@@ -148,15 +151,24 @@ func has_cannon():
 
 func take_drill_damage():
 	health -= 1
+	# do a wiggle
+	# random rotation and then fade back to normal?
+	if health % 2 == 0:
+		rotation = 0.07
+		#rotate(0.2)
+	else:
+		rotation = -0.07
+		#rotate(-0.2)
 
 func get_health():
 	return health
 
 func get_drilled(driller):
-	# reset hp	
-	health = 15
+	# reset hp
+	health = base_health
 	give_loot(driller)
 	sprite_node.visible = false
+	rotate(-0.1)
 	if has_camp:
 		camp_node.queue_free()
 		has_camp = false
