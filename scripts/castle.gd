@@ -22,7 +22,8 @@ func take_damage():
 	health -= 1
 	if health <= 0:
 		health = 0
-		print("dead castle")
+		#print("dead castle")
+		get_parent().lose_game()
 	
 	health_bar.value = health
 	timer.start()

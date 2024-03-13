@@ -8,6 +8,8 @@ var tower_build_menu
 var boss_spawned = false
 var snakes_dead = 0
 
+var snake_segments
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tower_build_menu = $"Tower Build Menu"
@@ -56,13 +58,35 @@ func spawn_boss(pos):
 	# only spawn 1
 	if !boss_spawned:
 		boss_spawned = true
+		snake_segments = []
 		for i in 10:
 			var snake = snake_scn.instantiate()
 			add_child(snake)
 			snake.global_position = pos
 			snake.setup(i, i * 0.48)
+			snake_segments.append(snake)
 			
 func snake_part_died(index):
 	snakes_dead += 1
+	print("Segment ", index, " died. Total: ", snakes_dead)
 	if snakes_dead == 10:
 		print("All snakes dead. You win!")
+		snake_segments[0].really_die()
+		snake_segments[9].really_die()
+		win_game()
+	if index == 0:
+		print("head died")
+		return
+	if index == 9:
+		print("tail died")
+		return
+	for i in 10:
+		if i > index:
+			if snake_segments[i] != null:
+				snake_segments[i].speed_up(0.48)
+
+func win_game():
+	$"Tower Build Menu".win()
+	
+func lose_game():
+	$"Tower Build Menu".lose()

@@ -46,5 +46,5 @@ func take_damage(damage):
 		kill()
 
 func kill():
-	print("Enemy killed")
+	#print("Enemy killed")
 	queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb80i026tnqb4"]
+[gd_scene load_steps=3 format=3 uid="uid://cb80i026tnqb4"]
 
 [ext_resource type="Script" path="res://scripts/tower_build_menu.gd" id="1_wl7n2"]
+[ext_resource type="Texture2D" uid="uid://dpsedmq7towql" path="res://sprites/forest.png" id="2_soyev"]
 
 [node name="Tower Build Menu" type="Control"]
 layout_mode = 3
@@ -148,6 +149,92 @@ Spawns enemies
 2nd tile - starts spawning
 3rd tile - cast random swap"
 
+[node name="Boss Info Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = 140.0
+offset_right = -213.0
+offset_bottom = 293.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Create a 3x3 of trees
+Be ready for a fight"
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(26, 76)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(74, 76)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(122, 76)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(26, 124)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(74, 124)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(122, 124)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(26, 172)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(74, 172)
+texture = ExtResource("2_soyev")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Boss Info Label"]
+position = Vector2(122, 172)
+texture = ExtResource("2_soyev")
+
+[node name="Win Label" type="Label" parent="."]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = 30.0
+offset_right = 105.0
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="Lose Label" type="Label" parent="."]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = 30.0
+offset_right = 105.0
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Your castle died
+You lose"
+horizontal_alignment = 1
+
 [node name="Drill Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 185.0
@@ -162,6 +249,7 @@ Cost:
 3 stone"
 
 [node name="Cannon Button" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 300.0
 offset_top = -300.0

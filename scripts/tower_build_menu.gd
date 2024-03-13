@@ -87,8 +87,15 @@ Resources Needed:
 "+ str(4-wood) + "/4 wood
 "+ str(7-stone) + "/7 stone"
 
+func win():
+	$"Win Label".visible = true
+
+func lose():
+	$"Lose Label".visible = true
+
 func _on_drill_button_pressed():
 	on_tower_build_button_pressed.emit(TowerType.Drill)
+	$"Cannon Button".visible = true
 
 func _on_cannon_button_pressed():
 	on_tower_build_button_pressed.emit(TowerType.Cannon)

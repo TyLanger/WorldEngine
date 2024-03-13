@@ -15,6 +15,8 @@ var move_speed = 100
 var path
 var path_index = 0
 
+var speed_time = 0
+
 var current_direction
 var spawn_direction
 
@@ -22,6 +24,7 @@ var follower
 
 var health = 10
 var my_segment
+var dead = false
 
 @export var body_sprite: Texture
 @export var tail_sprite: Texture
@@ -42,6 +45,16 @@ func _process(delta):
 		else:
 			get_to_corner(delta)
 	else:
+		if speed_time > 0:
+			speed_time -= delta
+			# move twice is same as double speed, right?
+			position = position.move_toward(path[path_index], base_move_speed * delta)
+			if position.distance_squared_to(path[path_index]) < 1:
+				path_index += 1
+				if path.size() == path_index:
+					# go to the next path
+					path_index = 0
+					get_next_path()
 		position = position.move_toward(path[path_index], base_move_speed * delta)
 		look_at(path[path_index])
 		if position.distance_squared_to(path[path_index]) < 1:
@@ -76,15 +89,26 @@ func setup(segments, start_delay):
 			enemy_timer = 5.0
 
 func take_damage(damage):
-	#if just_spawned:
-		#return
+	if just_spawned || dead:
+		return
 	health -= damage
 	if health <= 0:
 		kill()
 
 func kill():
 	get_parent().snake_part_died(my_segment)
+	dead = true
+	if my_segment == 0 || my_segment == 9:
+		# head and tail can't die
+		
+		return
 	queue_free()
+
+func really_die():
+	base_move_speed = 0
+
+func speed_up(time):
+	speed_time += time
 
 func spawn_enemy():
 	var enemy = enemy_scene.instantiate()

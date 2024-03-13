@@ -19,7 +19,7 @@ func fire(dir: Vector2):
 
 func _on_area_2d_area_entered(area):
 	if area.name == "EnemyArea":
-		print("hit enemy")
+		#print("hit enemy")
 		# am I supposed to make the area the root?
 		# or attach a script to the area?
 		area.get_parent().take_damage(1)
