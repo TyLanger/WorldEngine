@@ -354,6 +354,8 @@ func create_big_tree(x, y):
 	grid[x-1][y].make_spooky_tree()
 	grid[x-1][y-1].make_spooky_tree()
 	grid[x-1][y+1].make_spooky_tree()
+	
+	get_parent().spawn_boss(grid[x][y].global_position)
 
 func try_dump(x, y, resource_stack_node) -> bool:
 	#print("dump here")
@@ -491,6 +493,8 @@ func tile_clicked():
 	is_tile_selected = true
 	var tile_selected_point = nearest_tile(get_global_mouse_position())
 	tile_selected = grid[tile_selected_point.x][tile_selected_point.y]
+	#print("clicked tile at ", tile_selected.global_position)
+	
 	#update selection
 	selection.position = tile_selected.position
 	selection.visible = true

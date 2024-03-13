@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c26ohnqreg8gv"]
+[gd_scene load_steps=8 format=3 uid="uid://c26ohnqreg8gv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ddm3x"]
 [ext_resource type="PackedScene" uid="uid://bd3t17ocbs6td" path="res://scenes/grid.tscn" id="1_y4y31"]
 [ext_resource type="PackedScene" uid="uid://dgmgnyybg7w3m" path="res://scenes/drill_tower.tscn" id="2_cpkls"]
 [ext_resource type="PackedScene" uid="uid://cn8h31owc2j58" path="res://scenes/cannon.tscn" id="3_1uei8"]
+[ext_resource type="PackedScene" uid="uid://b8hi8ot8gk6q" path="res://scenes/snake.tscn" id="4_ubc6m"]
 [ext_resource type="PackedScene" uid="uid://bfsomep3eary6" path="res://scenes/castle.tscn" id="5_lp2vq"]
 [ext_resource type="PackedScene" uid="uid://cb80i026tnqb4" path="res://scenes/tower_build_menu.tscn" id="5_s51tr"]
 
@@ -11,6 +12,7 @@
 script = ExtResource("1_ddm3x")
 drill_scn = ExtResource("2_cpkls")
 cannon_scn = ExtResource("3_1uei8")
+snake_scn = ExtResource("4_ubc6m")
 
 [node name="Castle Grid" parent="." instance=ExtResource("1_y4y31")]
 grid_width = 7

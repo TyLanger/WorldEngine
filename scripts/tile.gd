@@ -27,6 +27,8 @@ var accel: float = 1.7
 # 25 is 5s to drill
 var health = 25
 var base_health = 25
+#var health = 10
+#var base_health = 10
 
 @onready var sprite_node = get_node("Sprite2D")
 
@@ -209,6 +211,7 @@ func make_spooky_tree():
 
 func choose_random_type():
 	var r = randi_range(0, 1)
+	#var r = 0
 	match r:
 		0:
 			sprite_node.texture = forest_tex

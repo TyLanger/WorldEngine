@@ -4,6 +4,9 @@ extends Node2D
 @export var cannon_scn: PackedScene
 var tower_build_menu
 
+@export var snake_scn: PackedScene
+var boss_spawned = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tower_build_menu = $"Tower Build Menu"
@@ -47,3 +50,12 @@ func random_swap_at(pos):
 
 func selected_update_ui(selected_tile):
 	$"Tower Build Menu".show_info(selected_tile)
+	
+func spawn_boss(pos):
+	# only spawn 1
+	if !boss_spawned:
+		var snake = snake_scn.instantiate()
+		add_child(snake)
+		snake.global_position = pos
+		snake.calculate_spawn_direction()
+		boss_spawned = true
