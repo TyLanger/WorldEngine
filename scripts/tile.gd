@@ -250,6 +250,10 @@ func spawn_tower(tower_scn: PackedScene, t_type):
 	tower_type = t_type
 	my_tower = tower
 
+func destroy_tower():
+	has_tower = false
+	my_tower.queue_free()
+
 func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	pass
 	#if event is InputEventMouseButton:

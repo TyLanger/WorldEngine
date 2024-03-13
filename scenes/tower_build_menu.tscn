@@ -294,5 +294,14 @@ Cost:
 4 wood
 7 stone"
 
+[node name="Destroy Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -255.0
+offset_top = -262.0
+offset_right = -134.0
+offset_bottom = -231.0
+text = "Destroy Tower"
+
 [connection signal="pressed" from="Drill Button" to="." method="_on_drill_button_pressed"]
 [connection signal="pressed" from="Cannon Button" to="." method="_on_cannon_button_pressed"]
+[connection signal="pressed" from="Destroy Button" to="." method="_on_destroy_button_pressed"]

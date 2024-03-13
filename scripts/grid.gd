@@ -94,6 +94,10 @@ func _process(_delta):
 
 func unselect():
 	selection.visible = false
+	# I think clicking a button deselects the button
+	# so I should do this, but I'd have to fix that
+	# so working + bug is better than just not working
+	#is_tile_selected = false
 	# other deselect stuff maybe
 	# tile_selected = false
 	# is there other stuff I need to do?
@@ -116,6 +120,11 @@ func spawn_tower(tower_scn: PackedScene, tower_type):
 			tile_selected.spawn_tower(tower_scn, tower_type)
 		else:
 			print("Tile already has a tower or resource stack")
+
+func destroy_tower():
+	if is_tile_selected && tile_selected != null:
+		if tile_selected.has_tower:
+			tile_selected.destroy_tower()
 
 func process_swapping():
 	if carrying_tile && player_controlled:

@@ -1,6 +1,7 @@
 extends Control
 
 signal on_tower_build_button_pressed
+signal on_destroy_pressed
 
 @onready var forest = $"Forest Info Label"
 @onready var mountain = $"Mountain Info Label"
@@ -68,7 +69,8 @@ func update_drill(tower):
 	var stone = tower.stone_needed
 	if wood == 0 && stone == 0:
 		drill.text = "Drill Tower
-		Drag near resources to drill them"
+		Drag near resources 
+		to drill them"
 		return
 	drill.text = "Drill Tower
 Resources Needed:
@@ -99,3 +101,8 @@ func _on_drill_button_pressed():
 
 func _on_cannon_button_pressed():
 	on_tower_build_button_pressed.emit(TowerType.Cannon)
+
+
+func _on_destroy_button_pressed():
+	on_destroy_pressed.emit()
+	#get_parent().get_parent().destroy_Button_pressed()

@@ -14,6 +14,7 @@ var snake_segments
 func _ready():
 	tower_build_menu = $"Tower Build Menu"
 	tower_build_menu.on_tower_build_button_pressed.connect(try_build_tower)
+	tower_build_menu.on_destroy_pressed.connect(destroy_tower)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -34,6 +35,9 @@ func build_cannon():
 func build_drill():
 	print("spawn drill here: ", get_node("Castle Grid").get_selection_position())
 	get_node("Castle Grid").spawn_tower(drill_scn, TowerType.Drill)
+
+func destroy_tower():
+	$"Castle Grid".destroy_tower()
 
 func drill(direction, x, y, driller):
 	#print("main coordinating drilling")
@@ -68,17 +72,17 @@ func spawn_boss(pos):
 			
 func snake_part_died(index):
 	snakes_dead += 1
-	print("Segment ", index, " died. Total: ", snakes_dead)
+	#print("Segment ", index, " died. Total: ", snakes_dead)
 	if snakes_dead == 10:
-		print("All snakes dead. You win!")
+		#print("All snakes dead. You win!")
 		snake_segments[0].really_die()
 		snake_segments[9].really_die()
 		win_game()
 	if index == 0:
-		print("head died")
+		#print("head died")
 		return
 	if index == 9:
-		print("tail died")
+		#print("tail died")
 		return
 	for i in 10:
 		if i > index:
