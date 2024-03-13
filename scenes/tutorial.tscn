@@ -1,0 +1,461 @@
+[gd_scene load_steps=14 format=3 uid="uid://bknktpbvqh2vf"]
+
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_iqgxq"]
+[ext_resource type="Texture2D" uid="uid://d3gllinw6eue6" path="res://sprites/drill.png" id="1_pdima"]
+[ext_resource type="Texture2D" uid="uid://bu60jlhphwyc" path="res://sprites/built_drill.png" id="2_6ml0v"]
+[ext_resource type="Texture2D" uid="uid://b5gfwq5p8wp4k" path="res://sprites/log.png" id="3_ruvu2"]
+[ext_resource type="Texture2D" uid="uid://2iklef8hja07" path="res://sprites/rock.png" id="4_cm0vj"]
+[ext_resource type="Texture2D" uid="uid://dpsedmq7towql" path="res://sprites/forest.png" id="5_p1t6e"]
+[ext_resource type="Texture2D" uid="uid://cnnk8prrlff32" path="res://sprites/camp.png" id="6_sov3d"]
+[ext_resource type="Texture2D" uid="uid://df55jjtyb6oc2" path="res://sprites/enemy.png" id="7_wl1lb"]
+[ext_resource type="Texture2D" uid="uid://csin7w3drwdnq" path="res://sprites/push_indicator.png" id="8_y0qtr"]
+[ext_resource type="Texture2D" uid="uid://c38k0fgj0e1qv" path="res://sprites/cannon.png" id="9_32i06"]
+[ext_resource type="Texture2D" uid="uid://haqyuenkap13" path="res://sprites/drilling.png" id="10_awfqb"]
+[ext_resource type="Texture2D" uid="uid://cfmfbsauefbc5" path="res://sprites/field.png" id="12_35ehq"]
+[ext_resource type="Texture2D" uid="uid://c013wp5rjgku5" path="res://sprites/mountain.png" id="13_h8y2y"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iqgxq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -400.0
+offset_top = -200.0
+offset_right = 1600.0
+offset_bottom = 1000.0
+color = Color(0.67451, 0.298039, 0.247059, 1)
+
+[node name="Build Parent" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -37.0
+offset_right = 41.0
+offset_bottom = -14.0
+
+[node name="Build Towers" type="Label" parent="Build Parent"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 112.0
+offset_right = 295.0
+offset_bottom = 135.0
+text = "Build Towers"
+
+[node name="Plus" type="Label" parent="Build Parent"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 171.0
+offset_right = 255.0
+offset_bottom = 194.0
+text = "+"
+
+[node name="Equals" type="Label" parent="Build Parent"]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 171.0
+offset_right = 332.0
+offset_bottom = 194.0
+text = "="
+
+[node name="Explanation" type="Label" parent="Build Parent"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 237.0
+offset_right = 425.0
+offset_bottom = 260.0
+text = "Drag resources over towers to build them
+A drill needs 5 wood and 3 stone to build"
+
+[node name="Blueprint Drill" type="TextureRect" parent="Build Parent"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 157.0
+offset_right = 211.0
+offset_bottom = 205.0
+texture = ExtResource("1_pdima")
+
+[node name="Built Drill" type="TextureRect" parent="Build Parent"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 157.0
+offset_right = 358.0
+offset_bottom = 205.0
+texture = ExtResource("2_6ml0v")
+
+[node name="Logs" type="TextureRect" parent="Build Parent"]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 143.0
+offset_right = 278.0
+offset_bottom = 191.0
+texture = ExtResource("3_ruvu2")
+
+[node name="Stone" type="TextureRect" parent="Build Parent"]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 184.0
+offset_right = 278.0
+offset_bottom = 232.0
+texture = ExtResource("4_cm0vj")
+
+[node name="Camp Parent" type="Label" parent="."]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 80.0
+offset_right = 825.0
+offset_bottom = 103.0
+
+[node name="Enemy Camps" type="Label" parent="Camp Parent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Enemy Camps"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -61.0
+offset_top = 36.0
+offset_right = 195.0
+offset_bottom = 84.0
+theme_override_constants/separation = 0
+
+[node name="Tile" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile2" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile3" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile4" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile5" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Camp" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer/Tile5"]
+layout_mode = 2
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("6_sov3d")
+
+[node name="Example 1" type="Label" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -114.0
+offset_top = 86.0
+offset_right = 246.0
+offset_bottom = 109.0
+text = "When graveyards first spawn, they do nothing."
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 128.0
+offset_right = 194.0
+offset_bottom = 176.0
+theme_override_constants/separation = 0
+
+[node name="Tile" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile2" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile3" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile5" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Camp" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2/Tile5"]
+layout_mode = 2
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("6_sov3d")
+
+[node name="Ghost" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2/Tile5"]
+layout_mode = 2
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("7_wl1lb")
+
+[node name="Tile4" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Example 2" type="Label" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -144.0
+offset_top = 187.0
+offset_right = 297.0
+offset_bottom = 210.0
+text = "When they reach the next tile, they start to spawn ghosts"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 237.0
+offset_right = 194.0
+offset_bottom = 285.0
+theme_override_constants/separation = 0
+
+[node name="Tile" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile2" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile5" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Camp" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3/Tile5"]
+layout_mode = 2
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("6_sov3d")
+
+[node name="Tile3" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Tile4" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_p1t6e")
+
+[node name="Example 3" type="Label" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -122.0
+offset_top = 298.0
+offset_right = 329.0
+offset_bottom = 399.0
+text = "When they reach the third tile, they cast random swap
+If there is something at the tile when it arrives, it will swap 
+it with something nearby.
+If the tile is empty when it arrives, nothing happens"
+
+[node name="Fields Hbox" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -175.0
+offset_top = 37.0
+offset_right = -79.0
+offset_bottom = 85.0
+theme_override_constants/separation = 0
+
+[node name="Field" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox"]
+layout_mode = 2
+texture = ExtResource("12_35ehq")
+
+[node name="Field2" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox"]
+layout_mode = 2
+texture = ExtResource("12_35ehq")
+
+[node name="Fields Hbox2" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = 131.0
+offset_right = -80.0
+offset_bottom = 179.0
+theme_override_constants/separation = 0
+
+[node name="Field" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox2"]
+layout_mode = 2
+texture = ExtResource("12_35ehq")
+
+[node name="Field2" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox2"]
+layout_mode = 2
+texture = ExtResource("12_35ehq")
+
+[node name="Fields Hbox3" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = 238.0
+offset_right = -80.0
+offset_bottom = 286.0
+theme_override_constants/separation = 0
+
+[node name="Field" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox3"]
+layout_mode = 2
+texture = ExtResource("12_35ehq")
+
+[node name="Field2" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox3"]
+layout_mode = 2
+texture = ExtResource("12_35ehq")
+
+[node name="Swap" type="TextureRect" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = 237.0
+offset_right = 16.0
+offset_bottom = 285.0
+texture = ExtResource("8_y0qtr")
+
+[node name="Cannon" type="TextureRect" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -130.0
+offset_top = 240.0
+offset_right = -82.0
+offset_bottom = 288.0
+rotation = 1.5708
+texture = ExtResource("9_32i06")
+
+[node name="Swap2" type="TextureRect" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -174.0
+offset_top = 238.0
+offset_right = -126.0
+offset_bottom = 286.0
+texture = ExtResource("8_y0qtr")
+
+[node name="Drill" type="TextureRect" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 36.0
+offset_right = -30.0
+offset_bottom = 84.0
+rotation = 1.5708
+texture = ExtResource("10_awfqb")
+
+[node name="Drill2" type="TextureRect" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -79.0
+offset_top = 132.0
+offset_right = -31.0
+offset_bottom = 180.0
+rotation = 1.5708
+texture = ExtResource("10_awfqb")
+
+[node name="Drill3" type="TextureRect" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -79.0
+offset_top = 240.0
+offset_right = -31.0
+offset_bottom = 288.0
+rotation = 1.5708
+texture = ExtResource("10_awfqb")
+
+[node name="Hide Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 562.0
+offset_right = 587.0
+offset_bottom = 593.0
+text = "Go Back"
+
+[node name="Drilling Parent" type="Label" parent="."]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 294.0
+offset_right = 268.0
+offset_bottom = 317.0
+
+[node name="Drilling" type="Label" parent="Drilling Parent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Drilling"
+
+[node name="Field" type="TextureRect" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 57.0
+offset_right = 41.0
+offset_bottom = 105.0
+texture = ExtResource("12_35ehq")
+
+[node name="Drill" type="TextureRect" parent="Drilling Parent/Drilling/Field"]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 96.0
+offset_bottom = 48.0
+rotation = 1.5708
+texture = ExtResource("10_awfqb")
+
+[node name="Field2" type="TextureRect" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 57.0
+offset_right = -8.0
+offset_bottom = 105.0
+texture = ExtResource("12_35ehq")
+
+[node name="Log" type="TextureRect" parent="Drilling Parent/Drilling/Field2"]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("3_ruvu2")
+
+[node name="Forest" type="TextureRect" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 58.0
+offset_right = 108.0
+offset_bottom = 106.0
+texture = ExtResource("5_p1t6e")
+
+[node name="Field3" type="TextureRect" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 114.0
+offset_right = 41.0
+offset_bottom = 162.0
+texture = ExtResource("12_35ehq")
+
+[node name="Drill" type="TextureRect" parent="Drilling Parent/Drilling/Field3"]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 96.0
+offset_bottom = 48.0
+rotation = 1.5708
+texture = ExtResource("10_awfqb")
+
+[node name="Field4" type="TextureRect" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 114.0
+offset_right = -8.0
+offset_bottom = 162.0
+texture = ExtResource("12_35ehq")
+
+[node name="Stone" type="TextureRect" parent="Drilling Parent/Drilling/Field4"]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("4_cm0vj")
+
+[node name="Mountain" type="TextureRect" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 115.0
+offset_right = 108.0
+offset_bottom = 163.0
+texture = ExtResource("13_h8y2y")
+
+[node name="Explanation" type="Label" parent="Drilling Parent/Drilling"]
+layout_mode = 0
+offset_left = -136.0
+offset_top = 183.0
+offset_right = 256.0
+offset_bottom = 258.0
+text = "Face your drills towards resources to harvest them
+Forests give wood
+Mountains give stone"
+
+[connection signal="pressed" from="Hide Button" to="." method="_on_hide_button_pressed"]
