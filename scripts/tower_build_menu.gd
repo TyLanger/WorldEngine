@@ -41,8 +41,10 @@ func show_info(selected_tile):
 		if selected_tile.has_drill():
 			drill.visible = true
 			# update with correct stats
+			update_drill(selected_tile.my_tower)
 		elif selected_tile.has_cannon():
 			cannon.visible = true
+			update_cannon(selected_tile.my_tower)
 	elif selected_tile.has_camp:
 		camp.visible = true
 	
@@ -60,6 +62,30 @@ func hide_all_towers():
 	cannon.visible = false
 	castle.visible = false
 	camp.visible = false
+
+func update_drill(tower):
+	var wood = tower.wood_needed
+	var stone = tower.stone_needed
+	if wood == 0 && stone == 0:
+		drill.text = "Drill Tower
+		Drag near resources to drill them"
+		return
+	drill.text = "Drill Tower
+Resources Needed:
+"+ str(5-wood) + "/5 wood
+"+ str(3-stone) + "/3 stone"
+
+func update_cannon(tower):
+	var wood = tower.wood_needed
+	var stone = tower.stone_needed
+	if wood == 0 && stone == 0:
+		cannon.text = "Cannon Tower
+		Aim towards enemies"
+		return
+	cannon.text = "Cannon Tower
+Resources Needed:
+"+ str(4-wood) + "/4 wood
+"+ str(7-stone) + "/7 stone"
 
 func _on_drill_button_pressed():
 	on_tower_build_button_pressed.emit(TowerType.Drill)
