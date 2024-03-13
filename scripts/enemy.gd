@@ -1,6 +1,6 @@
 extends Node2D
 
-var move_speed = 50.0
+var move_speed = 42.0
 @onready var sprite = $"EnemySprite"
 var castle
 var health = 2

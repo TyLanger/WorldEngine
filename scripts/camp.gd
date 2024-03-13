@@ -7,7 +7,7 @@ var artillery_indicator_scene = preload("res://scenes/camp_artillery_indicator.t
 # will be 1 when it appears
 var times_moved = 0
 
-var art_flight_time = 3.0
+var art_flight_time = 4.0
 
 var art_start: Vector2
 var art_goal: Vector2

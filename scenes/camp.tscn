@@ -10,6 +10,6 @@ script = ExtResource("1_tukyf")
 texture = ExtResource("1_fe4if")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

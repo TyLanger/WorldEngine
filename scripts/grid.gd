@@ -63,7 +63,7 @@ func _ready():
 		
 		var wood_tile = grid[2][5]
 		# enough to create a drill and be 1 forest from making a cannon
-		wood.create(ResourceType.Wood, 60, wood_tile)
+		wood.create(ResourceType.Wood, 6, wood_tile)
 		wood_tile.give_resource_stack(wood)
 		
 		var stone = resource_stack_scn.instantiate()
@@ -71,7 +71,7 @@ func _ready():
 		
 		var stone_tile = grid[4][5]
 		# enough to create a drill and be 1 mountain from making a cannon
-		stone.create(ResourceType.Stone, 70, stone_tile)
+		stone.create(ResourceType.Stone, 7, stone_tile)
 		stone_tile.give_resource_stack(stone)
 
 
@@ -184,6 +184,8 @@ func process_resource_collisions(carry_node, other_node):
 	elif carry_node.has_resource && other_node.has_tower:
 		# paying for a drill
 		pay_for_tower(carry_node, other_node)
+	elif carry_node.has_tower && other_node.has_resource:
+		pay_for_tower(other_node, carry_node)
 
 func pay_for_tower(carry_node, other_node):
 	# works for both bc they both have a "wood_needed" field
