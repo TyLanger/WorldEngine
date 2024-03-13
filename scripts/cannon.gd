@@ -8,7 +8,11 @@ var wood_needed = 4
 var stone_needed = 7
 
 @onready var timer = $"Timer"
-var can_trigger = true
+@onready var collision_shape = $"Area2D/CollisionShape2D"
+
+@onready var sprite = $"Cannon Sprite"
+@export var normal_sprite: Texture
+var blueprint_mode = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +21,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if blueprint_mode:
+		if wood_needed <= 0 && stone_needed <= 0:
+			blueprint_mode = false
+			sprite.texture = normal_sprite
 
 
 func _on_area_2d_area_entered(area: Area2D):
-	if can_trigger:
-		if area.name == "EnemyArea":
-			fire_cannonball()
+	if area.name == "EnemyArea":
+		fire_cannonball()
 
 func fire_cannonball():
 	if can_fire():
@@ -31,8 +37,8 @@ func fire_cannonball():
 		ball.fire(get_fire_direction())
 		ball.set_deferred("global_position", global_position)
 		get_parent().get_parent().get_parent().call_deferred("add_child", ball)
-		# set trigger inactive so it can't shoot for a bit
-		can_trigger = false
+		# turn the collider off
+		collision_shape.set_deferred("disabled", true)
 		timer.start()
 
 func can_fire():
@@ -65,4 +71,4 @@ func face_dir(dir):
 
 
 func _on_timer_timeout():
-	can_trigger = true
+	collision_shape.set_deferred("disabled", false)

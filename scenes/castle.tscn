@@ -28,7 +28,7 @@ z_index = 2
 texture = ExtResource("1_nflhu")
 
 [node name="HealthBar" type="ProgressBar" parent="Castle Sprite"]
-z_index = 1
+z_index = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

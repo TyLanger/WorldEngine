@@ -142,7 +142,7 @@ offset_bottom = -107.0
 grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-text = "Camp
+text = "Graveyard
 Spawns enemies
 1st tile - nothing
 2nd tile - starts spawning

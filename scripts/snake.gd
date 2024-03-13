@@ -21,9 +21,13 @@ var spawn_direction
 var follower
 
 var health = 10
+var my_segment
 
 @export var body_sprite: Texture
 @export var tail_sprite: Texture
+
+var enemy_scene = preload("res://scenes/enemy.tscn")
+var enemy_timer = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,15 +51,29 @@ func _process(delta):
 				# go to the next path
 				path_index = 0
 				get_next_path()
+		if my_segment == 0:
+			# head can spawn enemies
+			enemy_timer -= delta
+			if enemy_timer <= 0:
+				spawn_enemy()
+				enemy_timer = 3.0
+		elif my_segment == 9:
+			# tail can spawn enemies slower
+			enemy_timer -= delta
+			if enemy_timer <= 0:
+				spawn_enemy()
+				enemy_timer = 5.0
 
 func setup(segments, start_delay):
 	calculate_spawn_direction()
 
 	delay = start_delay
+	my_segment = segments
 	if segments > 0:
 		$"Snake Head".texture = body_sprite
 		if segments == 9:
 			$"Snake Head".texture = tail_sprite
+			enemy_timer = 5.0
 
 func take_damage(damage):
 	#if just_spawned:
@@ -65,10 +83,13 @@ func take_damage(damage):
 		kill()
 
 func kill():
-	get_parent().snake_part_died()
+	get_parent().snake_part_died(my_segment)
 	queue_free()
 
-
+func spawn_enemy():
+	var enemy = enemy_scene.instantiate()
+	get_parent().add_child(enemy)
+	enemy.global_position = global_position
 
 func calculate_spawn_direction():
 	if global_position.y < -200:

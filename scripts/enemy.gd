@@ -3,6 +3,7 @@ extends Node2D
 var move_speed = 50.0
 @onready var sprite = $"EnemySprite"
 var castle
+var health = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,7 +41,9 @@ func _process(delta):
 		queue_free()
 
 func take_damage(damage):
-	kill()
+	health -= damage
+	if health <= 0:
+		kill()
 
 func kill():
 	print("Enemy killed")

@@ -62,7 +62,7 @@ func spawn_boss(pos):
 			snake.global_position = pos
 			snake.setup(i, i * 0.48)
 			
-func snake_part_died():
+func snake_part_died(index):
 	snakes_dead += 1
 	if snakes_dead == 10:
 		print("All snakes dead. You win!")

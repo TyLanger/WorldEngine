@@ -7,7 +7,8 @@ var next_drill_time = 0
 
 var is_drilling = false
 @onready var drill_sprite = $"Drill Sprite"
-var idle_sprite = preload("res://sprites/drill.png")
+var blueprint_sprite = preload("res://sprites/drill.png")
+var idle_sprite = preload("res://sprites/built_drill.png")
 var drilling_sprite = preload("res://sprites/drilling.png")
 
 var wood_count = 0
@@ -66,8 +67,10 @@ func can_i_drill():
 	# elif same type
 
 func update_drill_sprite():
-	if is_drilling:
-		drill_sprite.texture = drilling_sprite		
+	if wood_needed > 0 || stone_needed > 0:
+		drill_sprite.texture = blueprint_sprite
+	elif is_drilling:
+		drill_sprite.texture = drilling_sprite
 	else:
 		drill_sprite.texture = idle_sprite
 		
