@@ -4,28 +4,175 @@
 
 [node name="Tower Build Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wl7n2")
 
+[node name="Forest Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -320.0
+offset_right = -321.0
+offset_bottom = -167.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Forest Tile
+Gives wood"
+
+[node name="Mountain Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -320.0
+offset_right = -316.0
+offset_bottom = -167.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Mountain Tile
+Gives stone"
+
+[node name="Spooky Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -320.0
+offset_right = -289.0
+offset_bottom = -167.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Spooky Tile
+Gives more wood"
+
+[node name="Field Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -320.0
+offset_right = -314.0
+offset_bottom = -167.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Field Tile
+Gives Nothing"
+
+[node name="Drill Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -260.0
+offset_right = -275.0
+offset_bottom = -107.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Drill Tower
+Resources Needed:
+0/5 wood
+0/3 stone"
+
+[node name="Cannon Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -260.0
+offset_right = -275.0
+offset_bottom = -107.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Cannon Tower
+Resources Needed:
+0/4 wood
+0/7 stone"
+
+[node name="Castle Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -260.0
+offset_right = -275.0
+offset_bottom = -107.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Castle
+Protect this"
+
+[node name="Camp Info Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -260.0
+offset_right = -213.0
+offset_bottom = -107.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Camp
+Spawns enemies
+1st tile - nothing
+2nd tile - starts spawning
+3rd tile - cast random swap"
+
 [node name="Drill Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 460.0
-offset_top = -174.0
-offset_right = 553.0
-offset_bottom = -143.0
-text = "Drill Tower"
+offset_left = 185.0
+offset_top = -300.0
+offset_right = 286.0
+offset_bottom = -154.0
+text = "Drill Tower
+Use to mine 
+resources
+Cost:
+5 wood
+3 stone"
 
 [node name="Cannon Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 460.0
-offset_top = -134.0
-offset_right = 553.0
-offset_bottom = -103.0
-text = "Cannon Tower"
+offset_left = 300.0
+offset_top = -300.0
+offset_right = 420.0
+offset_bottom = -154.0
+text = "Cannon Tower
+Use to shoot
+enemies
+Cost:
+4 wood
+7 stone"
 
 [connection signal="pressed" from="Drill Button" to="." method="_on_drill_button_pressed"]
 [connection signal="pressed" from="Cannon Button" to="." method="_on_cannon_button_pressed"]

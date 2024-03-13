@@ -41,10 +41,6 @@ var random_type = true
 
 @export var camp_scene: PackedScene
 
-enum TileType {
-	Forest, Mountain, Field, SpookyTree
-}
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = position
@@ -73,7 +69,7 @@ func _process(delta):
 		
 		move_speed = clamp(move_speed + accel, min_speed, max_speed)
 		if position.distance_squared_to(anchor_pos) < 0.1:
-			reached_desitation()
+			reached_destination()
 
 func can_swap():
 	return swappable
@@ -126,7 +122,7 @@ func drop(new_pos):
 	move_speed = min_speed
 	moving = true
 
-func reached_desitation():
+func reached_destination():
 	# when the tile "respawns" at the backside of the grid
 	position = anchor_pos
 	moving = false
