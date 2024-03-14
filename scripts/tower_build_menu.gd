@@ -107,3 +107,8 @@ func _on_cannon_button_pressed():
 func _on_destroy_button_pressed():
 	on_destroy_pressed.emit()
 	#get_parent().get_parent().destroy_Button_pressed()
+
+
+func _on_reload_button_pressed():
+	# why does this work, but not show the title screen again?
+	get_tree().change_scene_to_file("res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn")

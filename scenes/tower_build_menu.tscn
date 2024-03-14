@@ -155,49 +155,50 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = -423.0
-offset_top = 140.0
+offset_top = 155.0
 offset_right = -213.0
-offset_bottom = 293.0
+offset_bottom = 308.0
 grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-text = "Create a 3x3 of trees
-Be ready for a fight"
+text = "Goal:
+Create a 3x3 of trees.
+Be ready for a fight."
 
 [node name="Sprite2D" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(26, 76)
+position = Vector2(26, 106)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(74, 76)
+position = Vector2(74, 106)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(122, 76)
+position = Vector2(122, 106)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(26, 124)
+position = Vector2(26, 154)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D5" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(74, 124)
+position = Vector2(74, 154)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(122, 124)
+position = Vector2(122, 154)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D7" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(26, 172)
+position = Vector2(26, 202)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D8" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(74, 172)
+position = Vector2(74, 202)
 texture = ExtResource("2_soyev")
 
 [node name="Sprite2D9" type="Sprite2D" parent="Boss Info Label"]
-position = Vector2(122, 172)
+position = Vector2(122, 202)
 texture = ExtResource("2_soyev")
 
 [node name="Win Label" type="Label" parent="."]
@@ -302,6 +303,15 @@ offset_right = -134.0
 offset_bottom = -231.0
 text = "Destroy Tower"
 
+[node name="Reload Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 763.0
+offset_top = 368.0
+offset_right = 877.0
+offset_bottom = 399.0
+text = "Restart Game"
+
 [connection signal="pressed" from="Drill Button" to="." method="_on_drill_button_pressed"]
 [connection signal="pressed" from="Cannon Button" to="." method="_on_cannon_button_pressed"]
 [connection signal="pressed" from="Destroy Button" to="." method="_on_destroy_button_pressed"]
+[connection signal="pressed" from="Reload Button" to="." method="_on_reload_button_pressed"]

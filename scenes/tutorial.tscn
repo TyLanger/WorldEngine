@@ -118,12 +118,21 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Enemy Camps"
 
+[node name="Example 0" type="Label" parent="Camp Parent/Enemy Camps"]
+layout_mode = 0
+offset_left = -142.0
+offset_top = 30.0
+offset_right = 218.0
+offset_bottom = 53.0
+text = "When drilling, you might uncover graveyards as new tiles.
+Keep drilling to bring them closer and destroy them."
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -61.0
-offset_top = 36.0
-offset_right = 195.0
-offset_bottom = 84.0
+offset_left = -29.0
+offset_top = 88.0
+offset_right = 227.0
+offset_bottom = 136.0
 theme_override_constants/separation = 0
 
 [node name="Tile" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
@@ -154,18 +163,18 @@ texture = ExtResource("6_sov3d")
 
 [node name="Example 1" type="Label" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -174.0
-offset_top = 86.0
-offset_right = 186.0
-offset_bottom = 109.0
+offset_left = -142.0
+offset_top = 138.0
+offset_right = 218.0
+offset_bottom = 161.0
 text = "When graveyards first spawn, they do nothing."
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -62.0
-offset_top = 128.0
-offset_right = 194.0
-offset_bottom = 176.0
+offset_left = -30.0
+offset_top = 180.0
+offset_right = 226.0
+offset_bottom = 228.0
 theme_override_constants/separation = 0
 
 [node name="Tile" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
@@ -202,18 +211,19 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Example 2" type="Label" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -175.0
-offset_top = 187.0
-offset_right = 271.0
-offset_bottom = 210.0
-text = "When they reach the next tile, they start to spawn ghosts."
+offset_left = -143.0
+offset_top = 239.0
+offset_right = 303.0
+offset_bottom = 288.0
+text = "When they reach the next tile, they start to spawn ghosts.
+Build Cannons to protect your castle from ghosts."
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -62.0
-offset_top = 237.0
-offset_right = 194.0
-offset_bottom = 285.0
+offset_left = -30.0
+offset_top = 301.0
+offset_right = 226.0
+offset_bottom = 349.0
 theme_override_constants/separation = 0
 
 [node name="Tile" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
@@ -244,21 +254,23 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Example 3" type="Label" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -176.0
-offset_top = 297.0
-offset_right = 275.0
-offset_bottom = 398.0
+offset_left = -144.0
+offset_top = 361.0
+offset_right = 307.0
+offset_bottom = 514.0
 text = "When they reach the third tile, they cast random swap.
 If there is something at the tile when it arrives, it will swap 
 it with something nearby.
-If the tile is empty when it arrives, nothing happens."
+If the tile is empty when it arrives, nothing happens.
+So quickly move your towers and resources out of the way
+or things will quickly turn into a mess."
 
 [node name="Fields Hbox" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -175.0
-offset_top = 37.0
-offset_right = -79.0
-offset_bottom = 85.0
+offset_left = -143.0
+offset_top = 89.0
+offset_right = -47.0
+offset_bottom = 137.0
 theme_override_constants/separation = 0
 
 [node name="Field" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox"]
@@ -271,10 +283,10 @@ texture = ExtResource("12_35ehq")
 
 [node name="Fields Hbox2" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -176.0
-offset_top = 131.0
-offset_right = -80.0
-offset_bottom = 179.0
+offset_left = -144.0
+offset_top = 183.0
+offset_right = -48.0
+offset_bottom = 231.0
 theme_override_constants/separation = 0
 
 [node name="Field" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox2"]
@@ -287,10 +299,10 @@ texture = ExtResource("12_35ehq")
 
 [node name="Fields Hbox3" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -176.0
-offset_top = 238.0
-offset_right = -80.0
-offset_bottom = 286.0
+offset_left = -144.0
+offset_top = 302.0
+offset_right = -48.0
+offset_bottom = 350.0
 theme_override_constants/separation = 0
 
 [node name="Field" type="TextureRect" parent="Camp Parent/Enemy Camps/Fields Hbox3"]
@@ -303,53 +315,52 @@ texture = ExtResource("12_35ehq")
 
 [node name="Swap" type="TextureRect" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -32.0
-offset_top = 237.0
-offset_right = 16.0
-offset_bottom = 285.0
+offset_top = 301.0
+offset_right = 48.0
+offset_bottom = 349.0
 texture = ExtResource("8_y0qtr")
 
 [node name="Cannon" type="TextureRect" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -130.0
-offset_top = 240.0
-offset_right = -82.0
-offset_bottom = 288.0
+offset_left = -98.0
+offset_top = 304.0
+offset_right = -50.0
+offset_bottom = 352.0
 rotation = 1.5708
 texture = ExtResource("9_32i06")
 
 [node name="Swap2" type="TextureRect" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -174.0
-offset_top = 238.0
-offset_right = -126.0
-offset_bottom = 286.0
+offset_left = -142.0
+offset_top = 302.0
+offset_right = -94.0
+offset_bottom = 350.0
 texture = ExtResource("8_y0qtr")
 
 [node name="Drill" type="TextureRect" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -78.0
-offset_top = 36.0
-offset_right = -30.0
-offset_bottom = 84.0
+offset_left = -46.0
+offset_top = 88.0
+offset_right = 2.0
+offset_bottom = 136.0
 rotation = 1.5708
 texture = ExtResource("10_awfqb")
 
 [node name="Drill2" type="TextureRect" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -79.0
-offset_top = 132.0
-offset_right = -31.0
-offset_bottom = 180.0
+offset_left = -47.0
+offset_top = 184.0
+offset_right = 1.0
+offset_bottom = 232.0
 rotation = 1.5708
 texture = ExtResource("10_awfqb")
 
 [node name="Drill3" type="TextureRect" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -79.0
-offset_top = 240.0
-offset_right = -31.0
-offset_bottom = 288.0
+offset_left = -47.0
+offset_top = 304.0
+offset_right = 1.0
+offset_bottom = 352.0
 rotation = 1.5708
 texture = ExtResource("10_awfqb")
 
@@ -454,9 +465,9 @@ texture = ExtResource("13_h8y2y")
 
 [node name="Explanation" type="Label" parent="Drilling Parent/Drilling"]
 layout_mode = 0
-offset_left = -136.0
+offset_left = -128.0
 offset_top = 162.0
-offset_right = 256.0
+offset_right = 269.0
 offset_bottom = 237.0
 text = "Face your drills towards resources to harvest them.
 Forests give wood.
