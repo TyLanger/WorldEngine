@@ -210,18 +210,31 @@ func make_spooky_tree():
 	sprite_node.texture = spooky_tex
 
 func choose_random_type():
-	var r = randi_range(0, 1)
-	#r = 0
-	match r:
-		0:
-			sprite_node.texture = forest_tex
-			tile_type = TileType.Forest
-		1:
-			sprite_node.texture = mountain_tex
-			tile_type = TileType.Mountain
-		2:
-			sprite_node.texture = field_tex
-			tile_type = TileType.Field
+	# inclusive
+	# (0, 2)
+	# can return 0,1,2
+	#var r = randi_range(0, 1)
+	##r = 0
+	#match r:
+		#0:
+			#sprite_node.texture = forest_tex
+			#tile_type = TileType.Forest
+		#1:
+			#sprite_node.texture = mountain_tex
+			#tile_type = TileType.Mountain
+		#2:
+			#sprite_node.texture = field_tex
+			#tile_type = TileType.Field
+
+	# 9 numbers
+	# 55% chance to get a forest
+	var r = randi_range(0, 8)
+	if r > 3:
+		sprite_node.texture = forest_tex
+		tile_type = TileType.Forest
+	else:
+		sprite_node.texture = mountain_tex
+		tile_type = TileType.Mountain
 
 func create_camp():
 	var r = randi_range(0, 15)

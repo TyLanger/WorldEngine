@@ -40,9 +40,9 @@ func _process(delta):
 			# drill something
 			# figure out where I am and where my target must be
 			# target_tile.take_drill_damage()
-			drill_target()
 			is_drilling = true
 			update_drill_sprite()
+			drill_target()
 		else:
 			is_drilling = false
 			update_drill_sprite()
@@ -126,6 +126,13 @@ func drill_target():
 	# assume we have correct facing and position
 	# tile.grid
 	var my_point = grid.nearest_tile(global_position)
+	if my_point.x == 0 && my_point.y == 0 || my_point.x == 6 && my_point.y == 0 || my_point.x == 0 && my_point.y == 6 || my_point.x == 6 && my_point.y == 6:
+		# in the corner
+		# shouldn't be able to get here
+		print("error. Trying to drill in corner")
+		is_drilling = false
+		update_drill_sprite()
+		return
 	match facing:
 		Direction.Up:
 			# I am (1,0) to (5,0)
@@ -153,7 +160,7 @@ func drill_target():
 func is_correct_facing_and_position() -> bool:
 	# can only drill if on the outskirts
 	# outskirts is 3x48 = 144 in one axis
-	if abs(global_position.x) >= 144 && abs(global_position.y) >= 144:
+	if abs(global_position.x) >= 120 && abs(global_position.y) >= 120:
 		#print("at a corner. Can't drill")
 		return false
 	

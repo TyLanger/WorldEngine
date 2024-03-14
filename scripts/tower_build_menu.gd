@@ -82,7 +82,8 @@ func update_cannon(tower):
 	var stone = tower.stone_needed
 	if wood == 0 && stone == 0:
 		cannon.text = "Cannon Tower
-		Aim towards enemies"
+		Aim towards enemies
+		Range increases after 30s"
 		return
 	cannon.text = "Cannon Tower
 Resources Needed:

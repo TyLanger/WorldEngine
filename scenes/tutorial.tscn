@@ -29,7 +29,7 @@ offset_left = -400.0
 offset_top = -200.0
 offset_right = 1600.0
 offset_bottom = 1000.0
-color = Color(0.67451, 0.298039, 0.247059, 1)
+color = Color(0.0392157, 0.431373, 0.396078, 1)
 
 [node name="Build Parent" type="Label" parent="."]
 layout_mode = 0
@@ -65,11 +65,13 @@ text = "="
 [node name="Explanation" type="Label" parent="Build Parent"]
 layout_mode = 0
 offset_left = 103.0
-offset_top = 237.0
-offset_right = 425.0
-offset_bottom = 260.0
-text = "Drag resources over towers to build them
-A drill needs 5 wood and 3 stone to build"
+offset_top = 224.0
+offset_right = 438.0
+offset_bottom = 325.0
+text = "Select an empty tile and build a tower on it. 
+It's just an inactive blueprint at this point.
+Click and drag resources over towers to build them.
+A drill needs 5 wood and 3 stone to build."
 
 [node name="Blueprint Drill" type="TextureRect" parent="Build Parent"]
 layout_mode = 0
@@ -142,7 +144,7 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Tile5" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("5_p1t6e")
+texture = ExtResource("12_35ehq")
 
 [node name="Camp" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer/Tile5"]
 layout_mode = 2
@@ -152,9 +154,9 @@ texture = ExtResource("6_sov3d")
 
 [node name="Example 1" type="Label" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -114.0
+offset_left = -174.0
 offset_top = 86.0
-offset_right = 246.0
+offset_right = 186.0
 offset_bottom = 109.0
 text = "When graveyards first spawn, they do nothing."
 
@@ -180,7 +182,7 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Tile5" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("5_p1t6e")
+texture = ExtResource("12_35ehq")
 
 [node name="Camp" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer2/Tile5"]
 layout_mode = 2
@@ -200,11 +202,11 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Example 2" type="Label" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -144.0
+offset_left = -175.0
 offset_top = 187.0
-offset_right = 297.0
+offset_right = 271.0
 offset_bottom = 210.0
-text = "When they reach the next tile, they start to spawn ghosts"
+text = "When they reach the next tile, they start to spawn ghosts."
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
@@ -224,7 +226,7 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Tile5" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3"]
 layout_mode = 2
-texture = ExtResource("5_p1t6e")
+texture = ExtResource("12_35ehq")
 
 [node name="Camp" type="TextureRect" parent="Camp Parent/Enemy Camps/HBoxContainer3/Tile5"]
 layout_mode = 2
@@ -242,14 +244,14 @@ texture = ExtResource("5_p1t6e")
 
 [node name="Example 3" type="Label" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
-offset_left = -122.0
-offset_top = 298.0
-offset_right = 329.0
-offset_bottom = 399.0
-text = "When they reach the third tile, they cast random swap
+offset_left = -176.0
+offset_top = 297.0
+offset_right = 275.0
+offset_bottom = 398.0
+text = "When they reach the third tile, they cast random swap.
 If there is something at the tile when it arrives, it will swap 
 it with something nearby.
-If the tile is empty when it arrives, nothing happens"
+If the tile is empty when it arrives, nothing happens."
 
 [node name="Fields Hbox" type="HBoxContainer" parent="Camp Parent/Enemy Camps"]
 layout_mode = 0
@@ -368,16 +370,18 @@ offset_bottom = 317.0
 
 [node name="Drilling" type="Label" parent="Drilling Parent"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -1.0
+offset_top = 19.0
+offset_right = 55.0
+offset_bottom = 42.0
 text = "Drilling"
 
 [node name="Field" type="TextureRect" parent="Drilling Parent/Drilling"]
 layout_mode = 0
-offset_left = -7.0
-offset_top = 57.0
-offset_right = 41.0
-offset_bottom = 105.0
+offset_left = -6.0
+offset_top = 36.0
+offset_right = 42.0
+offset_bottom = 84.0
 texture = ExtResource("12_35ehq")
 
 [node name="Drill" type="TextureRect" parent="Drilling Parent/Drilling/Field"]
@@ -390,10 +394,10 @@ texture = ExtResource("10_awfqb")
 
 [node name="Field2" type="TextureRect" parent="Drilling Parent/Drilling"]
 layout_mode = 0
-offset_left = -56.0
-offset_top = 57.0
-offset_right = -8.0
-offset_bottom = 105.0
+offset_left = -54.0
+offset_top = 36.0
+offset_right = -6.0
+offset_bottom = 84.0
 texture = ExtResource("12_35ehq")
 
 [node name="Log" type="TextureRect" parent="Drilling Parent/Drilling/Field2"]
@@ -405,17 +409,17 @@ texture = ExtResource("3_ruvu2")
 [node name="Forest" type="TextureRect" parent="Drilling Parent/Drilling"]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 58.0
+offset_top = 36.0
 offset_right = 108.0
-offset_bottom = 106.0
+offset_bottom = 84.0
 texture = ExtResource("5_p1t6e")
 
 [node name="Field3" type="TextureRect" parent="Drilling Parent/Drilling"]
 layout_mode = 0
-offset_left = -7.0
-offset_top = 114.0
-offset_right = 41.0
-offset_bottom = 162.0
+offset_left = -6.0
+offset_top = 93.0
+offset_right = 42.0
+offset_bottom = 141.0
 texture = ExtResource("12_35ehq")
 
 [node name="Drill" type="TextureRect" parent="Drilling Parent/Drilling/Field3"]
@@ -428,10 +432,10 @@ texture = ExtResource("10_awfqb")
 
 [node name="Field4" type="TextureRect" parent="Drilling Parent/Drilling"]
 layout_mode = 0
-offset_left = -56.0
-offset_top = 114.0
-offset_right = -8.0
-offset_bottom = 162.0
+offset_left = -54.0
+offset_top = 93.0
+offset_right = -6.0
+offset_bottom = 141.0
 texture = ExtResource("12_35ehq")
 
 [node name="Stone" type="TextureRect" parent="Drilling Parent/Drilling/Field4"]
@@ -443,19 +447,19 @@ texture = ExtResource("4_cm0vj")
 [node name="Mountain" type="TextureRect" parent="Drilling Parent/Drilling"]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 115.0
+offset_top = 93.0
 offset_right = 108.0
-offset_bottom = 163.0
+offset_bottom = 141.0
 texture = ExtResource("13_h8y2y")
 
 [node name="Explanation" type="Label" parent="Drilling Parent/Drilling"]
 layout_mode = 0
 offset_left = -136.0
-offset_top = 183.0
+offset_top = 162.0
 offset_right = 256.0
-offset_bottom = 258.0
-text = "Face your drills towards resources to harvest them
-Forests give wood
-Mountains give stone"
+offset_bottom = 237.0
+text = "Face your drills towards resources to harvest them.
+Forests give wood.
+Mountains give stone."
 
 [connection signal="pressed" from="Hide Button" to="." method="_on_hide_button_pressed"]
